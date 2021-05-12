@@ -1,0 +1,140 @@
+{
+    "Dashbord-booknow-btn": {
+        "1": "RESERVAR AHORA"
+    },
+    "Dashbord-residential-btn": {
+        "2": "RESIDENCIAL"
+    },
+    "Dashbord-commercial-btn": {
+        "3": "COMERCIAL"
+    },
+    "Booknow-Next": {
+        "4": "SIGUIENTE"
+    },
+    "Reserve-just-1more": {
+        "5": "solo 1 paso más"
+    },
+    "Reserve-move-from": {
+        "6": "Seleccione la ciudad desde la que se muda"
+    },
+    "Reserve-move-to": {
+        "7": " Seleccione la ciudad a la que se muda"
+    },
+    "Reserve-move-date-and-time": {
+        "8": "Seleccione la fecha y hora de su mudanza"
+    },
+    "Thankyou-heading1": {
+        "9": "Hemos recibido tu información"
+    },
+    "Thankyou-heading2": {
+        "10": "Ahora uno de nuestros representantes se pondrá en contacto contigo"
+    },
+    "Thankyou-heading3": {
+        "11": "Gracias"
+    },
+    "Fianlcost-lock-price": {
+        "12": "Bloquea este precio AHORA"
+    },
+    "Fianlcost-reserve-price": {
+        "13": "Reserva ahora con solo el 25%"
+    },
+    "Fianlcost-remaning-price": {
+        "14": "Saldo restante después de completar la mudanza"
+    },
+    "Fianlcost-getextra": {
+        "15": "Obtenga un 5% de descuento EXTRA"
+    },
+    "Fianlcost-save-your-info-btn": {
+        "16": "GUARDAR Y RESERVAR MÁS TARDE"
+    },
+    "Fianlcost-save-and-booklater-text": {
+        "17": "Guarda tu información y reserva más tarde"
+    },
+    "Calculating-the-cost-of-move-loader": {
+        "18": "Calcular el costo de su mudanza"
+    },
+    "Review": {
+        "19": "Revise su lista de mudanzas"
+    },
+    "Review-living-room": {
+        "20": "SALA DE ESTAR"
+    },
+    "Review-dining-room": {
+        "21": "COMEDOR"
+    },
+    "Review-bed-room": {
+        "22": "HABITACIONES CAMA"
+    },
+    "Review-kitchen-room": {
+        "23": "COCINA"
+    },
+    "Review-misc": {
+        "24": "Diversa"
+    },
+    "Review-edit-moving-btn": {
+        "25": "EDITAR LISTA EN MOVIMIENTO"
+    },
+    "Review-get-quote-btn": {
+        "26": "OBTENER COTIZACIÓN AHORA"
+    },
+    "Book-now-name-input": {
+        "27": "Nombre del cliente"
+    },
+    "Book-now-email-input": {
+        "28": "Correo electrónico del cliente"
+    },
+    "Book-now-busines-name-input": {
+        "29": "Nombre del Negocio"
+    },
+    "Book-now-phone-input": {
+        "30": "Teléfono del cliente"
+    },
+    "Book-now-from-input": {
+        "31": "De"
+    },
+    "Book-now-to-input": {
+        "32": "A"
+    },
+    "Book-now-datepiker": {
+        "33": "Hora de la mudanza"
+    },
+    "Reserve-Date-input": {
+        "34": "Fecha"
+    },
+    "Reserve-Time-input": {
+        "35": "Hora"
+    },
+    "contact-name-input": {
+        "36": "Nombre de contacto"
+    },
+    "contact-emial-input": {
+        "37": "Dirección de correo electrónico"
+    },
+    "contact-businees-name-input": {
+        "38": "Nombre del Negocio"
+    },
+    "time-contact-you-input": {
+        "39": "Es hora de contactarlo"
+    },
+    "contact-phone-no-input": {
+        "40": "Número de teléfono"
+    },
+    "moreinfo-livingroom-input": {
+        "41": "Sala de estar"
+    },
+    "moreinfo-diningroom-input": {
+        "42": "Comedor"
+    },
+    "moreinfo-bedrooms-input": {
+        "43": "Dormitorios"
+    },
+    "moreinfo-miscellaneous-input": {
+        "44": "Diversa"
+    },
+    "moreinfo-kitchen-input": {
+        "45": "Cocina"
+    },
+    "helppage1": {
+        "46": "Haga clic para obtener más detalles"
+    }
+}

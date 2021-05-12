@@ -1,0 +1,140 @@
+{
+  "Dashbord-booknow-btn": {
+    "1": "BOOK NOW"
+  },
+  "Dashbord-residential-btn": {
+    "2": "RESIDENTIAL"
+  },
+  "Dashbord-commercial-btn": {
+    "3": "COMMERCIAL"
+  },
+  "Booknow-Next": {
+    "4": "NEXT"
+  },
+  "Reserve-just-1more": {
+    "5": " just 1 more step"
+  },
+  "Reserve-move-from": {
+    "6": "Select the Town you are moving from"
+  },
+  "Reserve-move-to": {
+    "7": "Select the Town you are moving to"
+  },
+  "Reserve-move-date-and-time": {
+    "8": "Select the Date and Time of your Move"
+  },
+  "Thankyou-heading1": {
+    "9": "We have received your Information"
+  },
+  "Thankyou-heading2": {
+    "10": "Now one of our representatives will contact you"
+  },
+  "Thankyou-heading3": {
+    "11": "Thank you"
+  },
+  "Fianlcost-lock-price": {
+    "12": "Lock this price NOW"
+  },
+  "Fianlcost-reserve-price": {
+    "13": "Reserve Now with only 25%"
+  },
+  "Fianlcost-remaning-price": {
+    "14": "Remaining balance after \n moving is completed"
+  },
+  "Fianlcost-getextra": {
+    "15": "Get an EXTRA 5% Off"
+  },
+  "Fianlcost-save-your-info-btn": {
+    "16": "SAVE AND BOOK LATER"
+  },
+  "Fianlcost-save-and-booklater-text": {
+    "17": "Save your info and book later"
+  },
+  "Calculating-the-cost-of-move-loader": {
+    "18": "Calculating the cost of your move"
+  },
+  "Review": {
+    "19": "Review your Moving list"
+  },
+  "Review-living-room": {
+    "20": "LIVING ROOM"
+  },
+  "Review-dining-room": {
+    "21": "DINING ROOM"
+  },
+  "Review-bed-room": {
+    "22": "BED ROOMS"
+  },
+  "Review-kitchen-room": {
+    "23": "KITCHEN"
+  },
+  "Review-misc": {
+    "24": "Miscellaneous"
+  },
+  "Review-edit-moving-btn": {
+    "25": "EDIT MOVING lIST"
+  },
+  "Review-get-quote-btn": {
+    "26": "GET QUOTE NOW"
+  },
+  "Book-now-name-input": {
+    "27": "Customer Name"
+  },
+  "Book-now-email-input": {
+    "28": "Customer Email"
+  },
+  "Book-now-busines-name-input": {
+    "29": "Business Name"
+  },
+  "Book-now-phone-input": {
+    "30": "Customer Phone "
+  },
+  "Book-now-from-input": {
+    "31": "From"
+  },
+  "Book-now-to-input": {
+    "32": "To"
+  },
+  "Book-now-datepiker": {
+    "33": "Time of the Move"
+  },
+  "Reserve-Date-input": {
+    "34": "Date"
+  },
+  "Reserve-Time-input": {
+    "35": "Time"
+  },
+  "contact-name-input": {
+    "36": "Contact Name"
+  },
+  "contact-emial-input": {
+    "37": "Email Address"
+  },
+  "contact-businees-name-input": {
+    "38": "Business Name"
+  },
+  "time-contact-you-input": {
+    "39": "Time To Contact You"
+  },
+  "contact-phone-no-input": {
+    "40": "Phone Number"
+  },
+  "moreinfo-livingroom-input": {
+    "41": "Living Room"
+  },
+  "moreinfo-diningroom-input": {
+    "42": "Dining Room"
+  },
+  "moreinfo-bedrooms-input": {
+    "43": "Bedrooms"
+  },
+  "moreinfo-miscellaneous-input": {
+    "44": "Miscellaneous"
+  },
+  "moreinfo-kitchen-input": {
+    "45": "Kitchen"
+  },
+  "helppage1": {
+    "46": "Click For More Details"
+  }
+}
