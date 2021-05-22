@@ -509,11 +509,9 @@ class FinalStepPage extends React.Component {
                   context.finalStepForm.email === '' ||
                   context.finalStepForm.phone === '' ||
                   context.finalStepForm.cardNumber === '' ||
-                  context.finalStepForm.cardNumber.length <= 18 ||
                   context.finalStepForm.cvc === '' ||
                   context.finalStepForm.cvc.length <= 2 ||
-                  context.finalStepForm.expiry === '' ||
-                  context.finalStepForm.expiry.length <= 4
+                  context.finalStepForm.expiry === ''
                 }
                 activeClassName={classes.active}
                 className={classes.Button}
