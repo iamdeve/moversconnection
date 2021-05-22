@@ -440,7 +440,7 @@ class FinalStepPage extends React.Component {
                 variant="outlined"
               /> */}
               <NumberFormat
-                name="expiry"
+                name="card"
                 required
                 className={classes.CardAutoComplete}
                 format="#### #### #### ####"
@@ -478,7 +478,7 @@ class FinalStepPage extends React.Component {
                   customInput={TextField}
                   variant="outlined"
                   label="Expiry MM/YY"
-                  mask={['M', 'M', 'Y', 'Y']}
+                  mask={['M', 'M', '/', 'Y', 'Y']}
                   onValueChange={({ value: v }) => context.handleExpiry(v)}
                 />
               </Grid>

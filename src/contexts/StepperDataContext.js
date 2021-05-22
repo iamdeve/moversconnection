@@ -1591,6 +1591,8 @@ class StepperDataContextProvider extends Component {
       this.state.cities.filter((city) => city.name === this.state.from)
     );
     let paidAmmount = ((25 / 100) * this.state.totalPrice).toFixed(2);
+    let finalStepForm = this.state.finalStepForm;
+    finalStepForm.expiry = `${this.state.finalStepForm.expiry[0]}${this.state.finalStepForm.expiry[1]}/${this.state.finalStepForm.expiry[2]}${this.state.finalStepForm.expiry[3]}`;
     let reservation = {
       reservation: {
         from: this.state.from,
