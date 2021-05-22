@@ -1,5 +1,5 @@
 import React from 'react';
-
+import NumberFormat from 'react-number-format';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
@@ -97,7 +97,8 @@ const styles = (theme) => ({
     backgroundColor: 'white',
     color: 'white',
     width: '100%',
-    width: 410,
+    // width: 410,
+    width: '100%',
     '@media (max-width:787px)': {
       width: 300,
       marginBottom: '.5rem'
@@ -106,8 +107,8 @@ const styles = (theme) => ({
   CardAutoComplete: {
     backgroundColor: 'white',
     color: 'white',
-    width: '90%',
-    marginLeft: '.5rem',
+    width: '100%',
+    margin: '0 2.5rem',
     '@media (max-width:787px)': {
       width: 300,
       marginBottom: '.5rem',
@@ -306,9 +307,15 @@ class FinalStepPage extends React.Component {
     let context = this.context;
     let url = '';
     if (this.props.location) {
-      if (this.props.location.state.fromLink === 'Residential') {
+      if (
+        this.props.location.state.fromLink === 'RESIDENTIAL' ||
+        'RESIDENCIAL'
+      ) {
         url = '/review';
-      } else if (this.props.location.state.fromLink === 'BookNow') {
+      } else if (
+        this.props.location.state.fromLink === 'BOOK NOW' ||
+        'RESERVAR AHORA'
+      ) {
         url = '/lastdetail';
       }
     }
@@ -420,7 +427,7 @@ class FinalStepPage extends React.Component {
           <Grid container xs={12} className={classes.MT}>
             <Grid container xs={0} sm={3} lg={3} />
             <Grid container xs={12} sm={6} lg={6} justify="center">
-              <TextField
+              {/* <TextField
                 align="left"
                 name="cardNumber"
                 style={{}}
@@ -431,6 +438,17 @@ class FinalStepPage extends React.Component {
                 required
                 label="Card Number"
                 variant="outlined"
+              /> */}
+              <NumberFormat
+                name="expiry"
+                required
+                className={classes.CardAutoComplete}
+                format="#### #### #### ####"
+                placeholder="Card Number"
+                customInput={TextField}
+                variant="outlined"
+                label="Card Number"
+                onValueChange={({ value: v }) => context.handleCardNumber(v)}
               />
             </Grid>
             <Grid container xs={0} sm={3} lg={3} />
@@ -440,7 +458,7 @@ class FinalStepPage extends React.Component {
             <Grid container xs={0} sm={3} lg={3} />
             <Grid container xs={12} sm={6} lg={6} justify="space-evenly">
               <Grid item xs={12} sm={6} lg={5}>
-                <TextField
+                {/* <TextField
                   align="left"
                   name="expiry"
                   className={classes.DDTO}
@@ -450,6 +468,18 @@ class FinalStepPage extends React.Component {
                   required
                   label="Expiry MM/YY"
                   variant="outlined"
+                /> */}
+                <NumberFormat
+                  name="expiry"
+                  required
+                  className={classes.Autocomplete}
+                  format="##/##"
+                  placeholder="MM/YY"
+                  customInput={TextField}
+                  variant="outlined"
+                  label="Expiry MM/YY"
+                  mask={['M', 'M', 'Y', 'Y']}
+                  onValueChange={({ value: v }) => context.handleExpiry(v)}
                 />
               </Grid>
 

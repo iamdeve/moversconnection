@@ -12,7 +12,6 @@ import { StepperDataContext } from '../../../../contexts/StepperDataContext';
 import cities from '../../../../pr.json';
 import { useTranslation } from 'react-i18next';
 
-
 const useStyles = makeStyles(() => ({
   root: {},
   title: {
@@ -129,15 +128,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
+const Town = cities.map((city) => city.city);
 
-
-const Town = cities.map(city => city.city);
-
-const BookNowPage = props => {
+const BookNowPage = (props) => {
   const SteeperContext = useContext(StepperDataContext);
   const { t } = useTranslation();
   const classes = useStyles();
@@ -148,26 +146,31 @@ const BookNowPage = props => {
   const [] = useState('');
   const pages1 = [
     {
-      title: t("Dashbord-residential-btn.2"),
+      title: t('Dashbord-residential-btn.2'),
       href: '/moreinfo'
     }
   ];
   const pages2 = [
     {
-      title: t("Dashbord-commercial-btn.3"),
+      title: t('Dashbord-commercial-btn.3'),
       href: '/contact'
     }
   ];
   const pages3 = [
     {
-      title: t("Booknow-Next.4"),
+      title: t('Booknow-Next.4'),
       href: '/'
     }
   ];
-  const { booknowmainheading, booknowsubheading, spbooknowmainheading, spbooknowsubheading } = SteeperContext.getAllsettings;
+  const {
+    booknowmainheading,
+    booknowsubheading,
+    spbooknowmainheading,
+    spbooknowsubheading
+  } = SteeperContext.getAllsettings;
   return (
     <StepperDataContext>
-      {context => {
+      {(context) => {
         return (
           <Grid container xs={12} align="center">
             {context.loader ? (
@@ -190,14 +193,18 @@ const BookNowPage = props => {
                 <Grid item xs={12}>
                   <Typography className={classes.title}>
                     {/* Book your Moving Today */}
-                    {SteeperContext.language === "spn" ? spbooknowmainheading : booknowmainheading}
+                    {SteeperContext.language === 'spn'
+                      ? spbooknowmainheading
+                      : booknowmainheading}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
                     {/* Know the cost of your Move and Reserve the Date with 25%
                     Deposit */}
-                    {SteeperContext.language === "spn" ? spbooknowsubheading : booknowsubheading}
+                    {SteeperContext.language === 'spn'
+                      ? spbooknowsubheading
+                      : booknowsubheading}
                   </Typography>
                   <Grid container xs={12} className={classes.ML}>
                     <Grid
@@ -206,7 +213,7 @@ const BookNowPage = props => {
                       sm={6}
                       lg={6}
                       style={{ paddingTop: '2vh' }}>
-                      {pages1.map(page => (
+                      {pages1.map((page) => (
                         <Grid
                           item
                           xs={12}
@@ -217,9 +224,9 @@ const BookNowPage = props => {
                             style={
                               type === 'residential'
                                 ? {
-                                  border: '2px solid #fff',
-                                  boxShadow: 'inset 0px 0px 5px #fff'
-                                }
+                                    border: '2px solid #fff',
+                                    boxShadow: 'inset 0px 0px 5px #fff'
+                                  }
                                 : { border: 'none' }
                             }
                             className={classes.Button}
@@ -241,7 +248,7 @@ const BookNowPage = props => {
                       sm={6}
                       lg={6}
                       className={classes.CommercialBTN}>
-                      {pages2.map(page => (
+                      {pages2.map((page) => (
                         <Grid
                           item
                           xs={12}
@@ -253,9 +260,9 @@ const BookNowPage = props => {
                             style={
                               type === 'commercial'
                                 ? {
-                                  border: '2px solid #fff',
-                                  boxShadow: 'inset 0px 0px 5px #fff'
-                                }
+                                    border: '2px solid #fff',
+                                    boxShadow: 'inset 0px 0px 5px #fff'
+                                  }
                                 : { border: 'none' }
                             }
                             key={page.title}
@@ -281,7 +288,7 @@ const BookNowPage = props => {
                             className={classes.Autocomplete}
                             value={context.customerName}
                             required
-                            label={t("Book-now-name-input.27")}
+                            label={t('Book-now-name-input.27')}
                             variant="outlined"
                           />
                         </Grid>
@@ -299,7 +306,7 @@ const BookNowPage = props => {
                             className={classes.Autocomplete}
                             value={context.customerEmail}
                             required
-                            label={t("Book-now-email-input.28")}
+                            label={t('Book-now-email-input.28')}
                             variant="outlined"
                           />
                         </Grid>
@@ -312,7 +319,7 @@ const BookNowPage = props => {
                             className={classes.Autocomplete}
                             value={context.customerBussinessName}
                             required
-                            label={t("Book-now-busines-name-input.29")}
+                            label={t('Book-now-busines-name-input.29')}
                             variant="outlined"
                           />
                         </Grid>
@@ -330,7 +337,7 @@ const BookNowPage = props => {
                             className={classes.Autocomplete}
                             value={context.customerBusinessPhone}
                             required
-                            label={t("Book-now-phone-input.30")}
+                            label={t('Book-now-phone-input.30')}
                             variant="outlined"
                           />
                         </Grid>
@@ -345,12 +352,12 @@ const BookNowPage = props => {
                         }}
                         align="left"
                         id="combo-box-demo"
-                        options={Town}
+                        options={context.cities.map((city) => city.name)}
                         defaultValue={context.from}
                         onChange={(e, value) =>
                           context.reserveChangeHandlerFrom(value)
                         }
-                        renderInput={params => (
+                        renderInput={(params) => (
                           <TextField
                             value={from}
                             required
@@ -363,7 +370,7 @@ const BookNowPage = props => {
                               }
                             }}
                             {...params}
-                            label={t("Book-now-from-input.31")}
+                            label={t('Book-now-from-input.31')}
                             variant="outlined"
                           />
                         )}
@@ -377,11 +384,11 @@ const BookNowPage = props => {
                           className: classes.inputColor
                         }}
                         id="combo-box-demo"
-                        options={Town}
+                        options={context.cities.map((city) => city.name)}
                         className={classes.DDTO}
                         defaultValue={context.to}
                         onChange={(e, v) => context.reserveChangeHandlerTo(v)}
-                        renderInput={params => (
+                        renderInput={(params) => (
                           <TextField
                             required
                             InputProps={{
@@ -393,7 +400,7 @@ const BookNowPage = props => {
                               }
                             }}
                             {...params}
-                            label={t("Book-now-to-input.32")}
+                            label={t('Book-now-to-input.32')}
                             variant="outlined"
                           />
                         )}
@@ -418,59 +425,61 @@ const BookNowPage = props => {
                           shrink: true
                         }}
                         name="date"
-                        onChange={(e) => context.reserveChangeHandlerDate(e.target.value)}
+                        onChange={(e) =>
+                          context.reserveChangeHandlerDate(e.target.value)
+                        }
                         value={context.date}
                         variant="outlined"
-                        label={t("Book-now-datepiker.33")}
+                        label={t('Book-now-datepiker.33')}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6} className={classes.PT}>
                       {type === 'commercial'
-                        ? pages3.map(page => (
-                          <Grid item xs={12}>
-                            <Button
-                              disabled={
-                                context.customerEmail === '' ||
-                                !validateEmail(context.customerEmail) ||
-                                context.from === '' ||
-                                context.to === '' ||
-                                context.date === ''
-                              }
-                              activeClassName={classes.active}
-                              className={classes.Button}
-                              key={page.title}
-                              onClick={() =>
-                                context.submitContactHandler('booknow')
-                              }
-                              variant="contained"
-                              color="primary">
-                              {page.title}
-                            </Button>
-                          </Grid>
-                        ))
-                        : pages3.map(page => (
-                          <Grid item xs={12}>
-                            <Button
-                              disabled={
-                                context.from === '' ||
-                                context.to === '' ||
-                                context.date === ''
-                              }
-                              activeClassName={classes.active}
-                              className={classes.Button}
-                              key={page.title}
-                              onClick={() => {
-                                context.handleNextEvent(
-                                  'fromBookNow',
-                                  page.href
-                                );
-                              }}
-                              variant="contained"
-                              color="primary">
-                              {page.title}
-                            </Button>
-                          </Grid>
-                        ))}
+                        ? pages3.map((page) => (
+                            <Grid item xs={12}>
+                              <Button
+                                disabled={
+                                  context.customerEmail === '' ||
+                                  !validateEmail(context.customerEmail) ||
+                                  context.from === '' ||
+                                  context.to === '' ||
+                                  context.date === ''
+                                }
+                                activeClassName={classes.active}
+                                className={classes.Button}
+                                key={page.title}
+                                onClick={() =>
+                                  context.submitContactHandler('booknow')
+                                }
+                                variant="contained"
+                                color="primary">
+                                {page.title}
+                              </Button>
+                            </Grid>
+                          ))
+                        : pages3.map((page) => (
+                            <Grid item xs={12}>
+                              <Button
+                                disabled={
+                                  context.from === '' ||
+                                  context.to === '' ||
+                                  context.date === ''
+                                }
+                                activeClassName={classes.active}
+                                className={classes.Button}
+                                key={page.title}
+                                onClick={() => {
+                                  context.handleNextEvent(
+                                    'fromBookNow',
+                                    page.href
+                                  );
+                                }}
+                                variant="contained"
+                                color="primary">
+                                {page.title}
+                              </Button>
+                            </Grid>
+                          ))}
                     </Grid>
                   </Grid>
                   {/* <Grid item xs={12} style={{ paddingTop: '2vh' }}>

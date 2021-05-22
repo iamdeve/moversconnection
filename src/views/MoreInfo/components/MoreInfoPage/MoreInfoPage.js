@@ -245,8 +245,6 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-
-
 class MoreInfoPage extends React.Component {
   static contextType = StepperDataContext;
   constructor(props) {
@@ -256,13 +254,24 @@ class MoreInfoPage extends React.Component {
   render() {
     const { t } = this.props;
     let context = this.context;
-    const { moreinfomainheading, moreinfosubheading, spmoreinfomainheading, spmoreinfosubheading } = this.context.getAllsettings;
+    const {
+      moreinfomainheading,
+      moreinfosubheading,
+      spmoreinfomainheading,
+      spmoreinfosubheading
+    } = this.context.getAllsettings;
     const { classes } = this.props;
     let url = '';
     if (this.props.location) {
-      if (this.props.location.state.fromLink === 'Residential') {
+      if (
+        this.props.location.state.fromLink === 'RESIDENTIAL' ||
+        'RESIDENCIAL'
+      ) {
         url = '/review';
-      } else if (this.props.location.state.fromLink === 'BookNow') {
+      } else if (
+        this.props.location.state.fromLink === 'BOOK NOW' ||
+        'RESERVAR AHORA'
+      ) {
         url = '/lastdetail';
       }
     }
@@ -272,7 +281,7 @@ class MoreInfoPage extends React.Component {
 
     const pages = [
       {
-        title: t("Booknow-Next.4"),
+        title: t('Booknow-Next.4'),
         href: '/lastdetail'
       }
     ];
@@ -296,7 +305,9 @@ class MoreInfoPage extends React.Component {
           <Grid item xs={12}>
             <Typography className={classes.title}>
               {/* We want to help you Save Money */}
-              {this.context.language === "spn" ? spmoreinfomainheading : moreinfomainheading}
+              {this.context.language === 'spn'
+                ? spmoreinfomainheading
+                : moreinfomainheading}
             </Typography>
           </Grid>
         </Grid>
@@ -308,7 +319,9 @@ class MoreInfoPage extends React.Component {
           <Grid item xs={12}>
             <Typography className={classes.subTitle}>
               {/* Tell us how much Stuff you have */}
-              {this.context.language === "spn" ? spmoreinfosubheading : moreinfosubheading}
+              {this.context.language === 'spn'
+                ? spmoreinfosubheading
+                : moreinfosubheading}
             </Typography>
           </Grid>
         </Grid>
@@ -330,7 +343,7 @@ class MoreInfoPage extends React.Component {
                   style={{ width: 250, background: 'white' }}>
                   <InputLabel id="demo-simple-select-outlined-label">
                     {/* Living Room */}
-                    {t("moreinfo-livingroom-input.41")}
+                    {t('moreinfo-livingroom-input.41')}
                   </InputLabel>
                   <Select
                     onChange={context.livingRoomChangeHandler}
@@ -428,67 +441,67 @@ class MoreInfoPage extends React.Component {
                           <div>
                             {context.Sizes[context.title] !== undefined
                               ? context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <FormControl
-                                      required
-                                      variant="outlined"
-                                      className={classes.formControl}>
-                                      <InputLabel id="demo-simple-select-outlined-label">
-                                        Size
+                                  return (
+                                    <div key={i.id}>
+                                      <FormControl
+                                        required
+                                        variant="outlined"
+                                        className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">
+                                          Size
                                         </InputLabel>
-                                      <Select
-                                        style={{
-                                          width: 250,
-                                          textAlign: 'left'
-                                        }}
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={context.age}
-                                        label={context.item}>
-                                        {context.Sizes[context.title].map(
-                                          (size) => (
-                                            <MenuItem
-                                              style={{ maxHeight: '80px' }}
-                                              value={size}
-                                              onClick={() => {
-                                                context.changeSizeHandler(
-                                                  size,
-                                                  i.id,
-                                                  context.Prices[
-                                                  context.title
-                                                  ]
-                                                );
-                                              }}>
-                                              {size}
-                                            </MenuItem>
-                                          )
-                                        )}
-                                      </Select>
-                                    </FormControl>
-                                  </div>
-                                );
-                              })
+                                        <Select
+                                          style={{
+                                            width: 250,
+                                            textAlign: 'left'
+                                          }}
+                                          labelId="demo-simple-select-outlined-label"
+                                          id="demo-simple-select-outlined"
+                                          value={context.age}
+                                          label={context.item}>
+                                          {context.Sizes[context.title].map(
+                                            (size) => (
+                                              <MenuItem
+                                                style={{ maxHeight: '80px' }}
+                                                value={size}
+                                                onClick={() => {
+                                                  context.changeSizeHandler(
+                                                    size,
+                                                    i.id,
+                                                    context.Prices[
+                                                      context.title
+                                                    ]
+                                                  );
+                                                }}>
+                                                {size}
+                                              </MenuItem>
+                                            )
+                                          )}
+                                        </Select>
+                                      </FormControl>
+                                    </div>
+                                  );
+                                })
                               : context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <TextField
-                                      required
-                                      style={{
-                                        textAlign: 'left',
-                                        width: 250,
-                                        paddingTop: '1vh'
-                                      }}
-                                      onChange={(e) =>
-                                        context.changeSizeHandler(e, i.id)
-                                      }
-                                      id="outlined-basic"
-                                      label="Size"
-                                      variant="outlined"
-                                    />
-                                  </div>
-                                );
-                              })}
+                                  return (
+                                    <div key={i.id}>
+                                      <TextField
+                                        required
+                                        style={{
+                                          textAlign: 'left',
+                                          width: 250,
+                                          paddingTop: '1vh'
+                                        }}
+                                        onChange={(e) =>
+                                          context.changeSizeHandler(e, i.id)
+                                        }
+                                        id="outlined-basic"
+                                        label="Size"
+                                        variant="outlined"
+                                      />
+                                    </div>
+                                  );
+                                })}
                           </div>
                           <button
                             disabled={
@@ -517,7 +530,7 @@ class MoreInfoPage extends React.Component {
                   style={{ width: 250, background: 'white' }}>
                   <InputLabel id="demo-simple-select-outlined-label">
                     {/* Dining Room */}
-                    {t("moreinfo-diningroom-input.42")}
+                    {t('moreinfo-diningroom-input.42')}
                   </InputLabel>
                   <Select
                     onChange={context.diningRoomChangeHandler}
@@ -610,67 +623,67 @@ class MoreInfoPage extends React.Component {
                           <div>
                             {context.Sizes[context.title] !== undefined
                               ? context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <FormControl
-                                      required
-                                      variant="outlined"
-                                      className={classes.formControl}>
-                                      <InputLabel id="demo-simple-select-outlined-label">
-                                        Size
+                                  return (
+                                    <div key={i.id}>
+                                      <FormControl
+                                        required
+                                        variant="outlined"
+                                        className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">
+                                          Size
                                         </InputLabel>
-                                      <Select
-                                        style={{
-                                          width: 250,
-                                          textAlign: 'left'
-                                        }}
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={context.age}
-                                        label={context.item}>
-                                        {context.Sizes[context.title].map(
-                                          (size) => (
-                                            <MenuItem
-                                              style={{ maxHeight: '80px' }}
-                                              value={size}
-                                              onClick={() => {
-                                                context.changeSizeHandler(
-                                                  size,
-                                                  i.id,
-                                                  context.Prices[
-                                                  context.title
-                                                  ]
-                                                );
-                                              }}>
-                                              {size}
-                                            </MenuItem>
-                                          )
-                                        )}
-                                      </Select>
-                                    </FormControl>
-                                  </div>
-                                );
-                              })
+                                        <Select
+                                          style={{
+                                            width: 250,
+                                            textAlign: 'left'
+                                          }}
+                                          labelId="demo-simple-select-outlined-label"
+                                          id="demo-simple-select-outlined"
+                                          value={context.age}
+                                          label={context.item}>
+                                          {context.Sizes[context.title].map(
+                                            (size) => (
+                                              <MenuItem
+                                                style={{ maxHeight: '80px' }}
+                                                value={size}
+                                                onClick={() => {
+                                                  context.changeSizeHandler(
+                                                    size,
+                                                    i.id,
+                                                    context.Prices[
+                                                      context.title
+                                                    ]
+                                                  );
+                                                }}>
+                                                {size}
+                                              </MenuItem>
+                                            )
+                                          )}
+                                        </Select>
+                                      </FormControl>
+                                    </div>
+                                  );
+                                })
                               : context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <TextField
-                                      required
-                                      style={{
-                                        textAlign: 'left',
-                                        width: 250,
-                                        paddingTop: '1vh'
-                                      }}
-                                      onChange={(e) =>
-                                        context.changeSizeHandler(e, i.id)
-                                      }
-                                      id="outlined-basic"
-                                      label="Size"
-                                      variant="outlined"
-                                    />
-                                  </div>
-                                );
-                              })}
+                                  return (
+                                    <div key={i.id}>
+                                      <TextField
+                                        required
+                                        style={{
+                                          textAlign: 'left',
+                                          width: 250,
+                                          paddingTop: '1vh'
+                                        }}
+                                        onChange={(e) =>
+                                          context.changeSizeHandler(e, i.id)
+                                        }
+                                        id="outlined-basic"
+                                        label="Size"
+                                        variant="outlined"
+                                      />
+                                    </div>
+                                  );
+                                })}
                           </div>
                           <button
                             disabled={
@@ -705,7 +718,7 @@ class MoreInfoPage extends React.Component {
                   style={{ width: 250, background: 'white' }}>
                   <InputLabel id="demo-simple-select-outlined-label">
                     {/* Bedrooms */}
-                    {t("moreinfo-bedrooms-input.43")}
+                    {t('moreinfo-bedrooms-input.43')}
                   </InputLabel>
                   <Select
                     onChange={context.bedRoomChangeHandler}
@@ -798,67 +811,67 @@ class MoreInfoPage extends React.Component {
                           <div>
                             {context.Sizes[context.title] !== undefined
                               ? context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <FormControl
-                                      required
-                                      variant="outlined"
-                                      className={classes.formControl}>
-                                      <InputLabel id="demo-simple-select-outlined-label">
-                                        Size
+                                  return (
+                                    <div key={i.id}>
+                                      <FormControl
+                                        required
+                                        variant="outlined"
+                                        className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">
+                                          Size
                                         </InputLabel>
-                                      <Select
-                                        style={{
-                                          width: 250,
-                                          textAlign: 'left'
-                                        }}
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={context.age}
-                                        label={context.item}>
-                                        {context.Sizes[context.title].map(
-                                          (size) => (
-                                            <MenuItem
-                                              style={{ maxHeight: '80px' }}
-                                              value={size}
-                                              onClick={() => {
-                                                context.changeSizeHandler(
-                                                  size,
-                                                  i.id,
-                                                  context.Prices[
-                                                  context.title
-                                                  ]
-                                                );
-                                              }}>
-                                              {size}
-                                            </MenuItem>
-                                          )
-                                        )}
-                                      </Select>
-                                    </FormControl>
-                                  </div>
-                                );
-                              })
+                                        <Select
+                                          style={{
+                                            width: 250,
+                                            textAlign: 'left'
+                                          }}
+                                          labelId="demo-simple-select-outlined-label"
+                                          id="demo-simple-select-outlined"
+                                          value={context.age}
+                                          label={context.item}>
+                                          {context.Sizes[context.title].map(
+                                            (size) => (
+                                              <MenuItem
+                                                style={{ maxHeight: '80px' }}
+                                                value={size}
+                                                onClick={() => {
+                                                  context.changeSizeHandler(
+                                                    size,
+                                                    i.id,
+                                                    context.Prices[
+                                                      context.title
+                                                    ]
+                                                  );
+                                                }}>
+                                                {size}
+                                              </MenuItem>
+                                            )
+                                          )}
+                                        </Select>
+                                      </FormControl>
+                                    </div>
+                                  );
+                                })
                               : context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <TextField
-                                      required
-                                      style={{
-                                        textAlign: 'left',
-                                        width: 250,
-                                        paddingTop: '1vh'
-                                      }}
-                                      onChange={(e) =>
-                                        context.changeSizeHandler(e, i.id)
-                                      }
-                                      id="outlined-basic"
-                                      label="Size"
-                                      variant="outlined"
-                                    />
-                                  </div>
-                                );
-                              })}
+                                  return (
+                                    <div key={i.id}>
+                                      <TextField
+                                        required
+                                        style={{
+                                          textAlign: 'left',
+                                          width: 250,
+                                          paddingTop: '1vh'
+                                        }}
+                                        onChange={(e) =>
+                                          context.changeSizeHandler(e, i.id)
+                                        }
+                                        id="outlined-basic"
+                                        label="Size"
+                                        variant="outlined"
+                                      />
+                                    </div>
+                                  );
+                                })}
                           </div>
                           <button
                             disabled={
@@ -888,7 +901,7 @@ class MoreInfoPage extends React.Component {
                   style={{ width: 250, background: 'white' }}>
                   <InputLabel id="demo-simple-select-outlined-label">
                     {/* Miscellaneous */}
-                    {t("moreinfo-miscellaneous-input.44")}
+                    {t('moreinfo-miscellaneous-input.44')}
                   </InputLabel>
                   <Select
                     onChange={context.miscChangeHandler}
@@ -1050,69 +1063,69 @@ class MoreInfoPage extends React.Component {
                                 {/* {context.Sizes[context.title]} */}
                                 {context.Sizes[context.title] !== undefined
                                   ? context.details[context.title].map((i) => {
-                                    return (
-                                      <div key={i.id}>
-                                        <FormControl
-                                          required
-                                          variant="outlined"
-                                          className={classes.formControl}>
-                                          <InputLabel id="demo-simple-select-outlined-label">
-                                            Size
+                                      return (
+                                        <div key={i.id}>
+                                          <FormControl
+                                            required
+                                            variant="outlined"
+                                            className={classes.formControl}>
+                                            <InputLabel id="demo-simple-select-outlined-label">
+                                              Size
                                             </InputLabel>
-                                          <Select
-                                            style={{
-                                              width: 250,
-                                              textAlign: 'left'
-                                            }}
-                                            labelId="demo-simple-select-outlined-label"
-                                            id="demo-simple-select-outlined"
-                                            value={context.age}
-                                            label={context.item}>
-                                            {context.Sizes[context.title].map(
-                                              (size) => (
-                                                <MenuItem
-                                                  style={{
-                                                    maxHeight: '80px'
-                                                  }}
-                                                  value={size}
-                                                  onClick={() => {
-                                                    context.changeSizeHandler(
-                                                      size,
-                                                      i.id,
-                                                      context.Prices[
-                                                      context.title
-                                                      ]
-                                                    );
-                                                  }}>
-                                                  {size}
-                                                </MenuItem>
-                                              )
-                                            )}
-                                          </Select>
-                                        </FormControl>
-                                      </div>
-                                    );
-                                  })
+                                            <Select
+                                              style={{
+                                                width: 250,
+                                                textAlign: 'left'
+                                              }}
+                                              labelId="demo-simple-select-outlined-label"
+                                              id="demo-simple-select-outlined"
+                                              value={context.age}
+                                              label={context.item}>
+                                              {context.Sizes[context.title].map(
+                                                (size) => (
+                                                  <MenuItem
+                                                    style={{
+                                                      maxHeight: '80px'
+                                                    }}
+                                                    value={size}
+                                                    onClick={() => {
+                                                      context.changeSizeHandler(
+                                                        size,
+                                                        i.id,
+                                                        context.Prices[
+                                                          context.title
+                                                        ]
+                                                      );
+                                                    }}>
+                                                    {size}
+                                                  </MenuItem>
+                                                )
+                                              )}
+                                            </Select>
+                                          </FormControl>
+                                        </div>
+                                      );
+                                    })
                                   : context.details[context.title].map((i) => {
-                                    return (
-                                      <div key={i.id}>
-                                        <TextField
-                                          required
-                                          style={{
-                                            textAlign: 'left',
-                                            width: 250,
-                                            paddingTop: '1vh'
-                                          }}
-                                          onChange={(e) =>
-                                            context.changeSizeHandler(e, i.id)
-                                          }
-                                          id="outlined-basic"
-                                          label="Size"
-                                          variant="outlined"
-                                        />
-                                      </div>
-                                    );
-                                  })}
+                                      return (
+                                        <div key={i.id}>
+                                          <TextField
+                                            required
+                                            style={{
+                                              textAlign: 'left',
+                                              width: 250,
+                                              paddingTop: '1vh'
+                                            }}
+                                            onChange={(e) =>
+                                              context.changeSizeHandler(e, i.id)
+                                            }
+                                            id="outlined-basic"
+                                            label="Size"
+                                            variant="outlined"
+                                          />
+                                        </div>
+                                      );
+                                    })}
                               </div>
                               <button
                                 disabled={
@@ -1150,7 +1163,7 @@ class MoreInfoPage extends React.Component {
                   style={{ width: 250, background: 'white' }}>
                   <InputLabel id="demo-simple-select-outlined-label">
                     {/* Kitchen */}
-                    {t("moreinfo-kitchen-input.45")}
+                    {t('moreinfo-kitchen-input.45')}
                   </InputLabel>
                   <Select
                     required
@@ -1244,67 +1257,67 @@ class MoreInfoPage extends React.Component {
                           <div>
                             {context.Sizes[context.title] !== undefined
                               ? context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <FormControl
-                                      required
-                                      variant="outlined"
-                                      className={classes.formControl}>
-                                      <InputLabel id="demo-simple-select-outlined-label">
-                                        Size
+                                  return (
+                                    <div key={i.id}>
+                                      <FormControl
+                                        required
+                                        variant="outlined"
+                                        className={classes.formControl}>
+                                        <InputLabel id="demo-simple-select-outlined-label">
+                                          Size
                                         </InputLabel>
-                                      <Select
-                                        style={{
-                                          width: 250,
-                                          textAlign: 'left'
-                                        }}
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={context.age}
-                                        label={context.item}>
-                                        {context.Sizes[context.title].map(
-                                          (size) => (
-                                            <MenuItem
-                                              style={{ maxHeight: '80px' }}
-                                              value={size}
-                                              onClick={() => {
-                                                context.changeSizeHandler(
-                                                  size,
-                                                  i.id,
-                                                  context.Prices[
-                                                  context.title
-                                                  ]
-                                                );
-                                              }}>
-                                              {size}
-                                            </MenuItem>
-                                          )
-                                        )}
-                                      </Select>
-                                    </FormControl>
-                                  </div>
-                                );
-                              })
+                                        <Select
+                                          style={{
+                                            width: 250,
+                                            textAlign: 'left'
+                                          }}
+                                          labelId="demo-simple-select-outlined-label"
+                                          id="demo-simple-select-outlined"
+                                          value={context.age}
+                                          label={context.item}>
+                                          {context.Sizes[context.title].map(
+                                            (size) => (
+                                              <MenuItem
+                                                style={{ maxHeight: '80px' }}
+                                                value={size}
+                                                onClick={() => {
+                                                  context.changeSizeHandler(
+                                                    size,
+                                                    i.id,
+                                                    context.Prices[
+                                                      context.title
+                                                    ]
+                                                  );
+                                                }}>
+                                                {size}
+                                              </MenuItem>
+                                            )
+                                          )}
+                                        </Select>
+                                      </FormControl>
+                                    </div>
+                                  );
+                                })
                               : context.details[context.title].map((i) => {
-                                return (
-                                  <div key={i.id}>
-                                    <TextField
-                                      required
-                                      style={{
-                                        textAlign: 'left',
-                                        width: 250,
-                                        paddingTop: '1vh'
-                                      }}
-                                      onChange={(e) =>
-                                        context.changeSizeHandler(e, i.id)
-                                      }
-                                      id="outlined-basic"
-                                      label="Size"
-                                      variant="outlined"
-                                    />
-                                  </div>
-                                );
-                              })}
+                                  return (
+                                    <div key={i.id}>
+                                      <TextField
+                                        required
+                                        style={{
+                                          textAlign: 'left',
+                                          width: 250,
+                                          paddingTop: '1vh'
+                                        }}
+                                        onChange={(e) =>
+                                          context.changeSizeHandler(e, i.id)
+                                        }
+                                        id="outlined-basic"
+                                        label="Size"
+                                        variant="outlined"
+                                      />
+                                    </div>
+                                  );
+                                })}
                           </div>
                           <button
                             disabled={

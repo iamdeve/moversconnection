@@ -163,7 +163,12 @@ const ReservePage = (props) => {
   const SteeperContext = useContext(StepperDataContext);
   const { t } = useTranslation();
   const { className } = props;
-  const moreInfoLink = props.location?.state?.fromLink === 'RESIDENTIAL';
+  const moreInfoLink =
+    props.location?.state?.fromLink === 'RESIDENTIAL' ||
+    props.location?.state?.fromLink === 'RESIDENCIAL'
+      ? props.location?.state?.fromLink
+      : null;
+  console.log(moreInfoLink);
   const classes = useStyles();
   const pages = [
     {
@@ -171,10 +176,8 @@ const ReservePage = (props) => {
       href: '/contact'
     }
   ];
-  const {
-    reservemainheaidng,
-    spreservemainheaidng
-  } = SteeperContext.getAllsettings;
+  const { reservemainheaidng, spreservemainheaidng } =
+    SteeperContext.getAllsettings;
   return (
     <StepperDataContext.Consumer>
       {(context) => {

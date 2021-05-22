@@ -450,13 +450,13 @@ class ReviewPage extends React.Component {
     const { className, onSidebarOpen } = this.props;
     const pages = [
       {
-        title: t("Review-get-quote-btn.26"),
+        title: t('Review-get-quote-btn.26'),
         href: '/finalcost'
       }
     ];
     const pages1 = [
       {
-        title: t("Review-edit-moving-btn.25"),
+        title: t('Review-edit-moving-btn.25'),
         href: '/moreinfo'
       }
     ];
@@ -479,28 +479,18 @@ class ReviewPage extends React.Component {
           <Grid item xs={12} sm={12} lg={12}>
             <Typography className={classes.Heading}>
               {/* Review your Moving list */}
-              {t("Review.19")}
+              {t('Review.19')}
             </Typography>
           </Grid>
         </Grid>
         {this.state.menusList.map((list) => (
           <Grid item xs={12} sm={3} lg={3} style={{ padding: '3vh' }}>
             <Typography className={classes.Title} style={{}}>
-              {list.name === 'LIVING ROOM' && (
-                t("Review-living-room.20")
-              )}
-              {list.name === 'DINING ROOM' && (
-                t("Review-dining-room.21")
-              )}
-              {list.name === 'BED ROOMS' && (
-                t("Review-bed-room.22")
-              )}
-              {list.name === 'KITCHEN' && (
-                t("Review-kitchen-room.23")
-              )}
-              {list.name === 'Miscellaneous' && (
-                t("Review-misc.24")
-              )}
+              {list.name === 'LIVING ROOM' && t('Review-living-room.20')}
+              {list.name === 'DINING ROOM' && t('Review-dining-room.21')}
+              {list.name === 'BED ROOMS' && t('Review-bed-room.22')}
+              {list.name === 'KITCHEN' && t('Review-kitchen-room.23')}
+              {list.name === 'Miscellaneous' && t('Review-misc.24')}
             </Typography>
             <Grid item xs={12} style={{ paddingTop: '2vh' }}>
               <div
@@ -557,13 +547,18 @@ class ReviewPage extends React.Component {
                   className={classes.Button}
                   key={page.title}
                   component={CustomRouterLink}
-                  style={{ height: "auto" }}
+                  style={{ height: 'auto' }}
                   to={
                     page.href === '/moreinfo'
                       ? {
-                        pathname: page.href,
-                        state: { fromLink: 'Residential' }
-                      }
+                          pathname: page.href,
+                          state: {
+                            fromLink:
+                              this.state.language === 'eng'
+                                ? 'RESIDENTIAL'
+                                : 'RESIDENCIAL'
+                          }
+                        }
                       : page.href
                   }
                   variant="contained"
@@ -579,7 +574,7 @@ class ReviewPage extends React.Component {
                 <Button
                   activeClassName={classes.active}
                   className={classes.Button}
-                  style={{ height: "auto" }}
+                  style={{ height: 'auto' }}
                   key={page.title}
                   component={CustomRouterLink}
                   to={page.href}

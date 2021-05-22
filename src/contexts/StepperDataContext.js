@@ -255,8 +255,7 @@ class StepperDataContextProvider extends Component {
       {
         isSelected: false,
         item: 'Arm_Decorative_Chair',
-        sm:
-          'Please include patio and all Armchair or decorative chairs in your move'
+        sm: 'Please include patio and all Armchair or decorative chairs in your move'
       },
       {
         isSelected: false,
@@ -1152,7 +1151,7 @@ class StepperDataContextProvider extends Component {
       loader: true
     });
     // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-    Geocode.setApiKey('AIzaSyAe-RvE9UpwF-SNkKvlpt4YpjOgDfaUCpQ');
+    Geocode.setApiKey('AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s');
 
     // set response language. Defaults to english.
     Geocode.setLanguage('en');
@@ -1181,7 +1180,7 @@ class StepperDataContextProvider extends Component {
         toLongitude: toResponse.results[0].geometry.location.lng
       });
 
-      console.log(moreInfoLink);
+      console.log(moreInfoLink, contact);
       if (moreInfoLink) {
         if (this.state.customerName !== '') {
           let customer = await axios.post('/api/customers/addCustomer', {
@@ -1196,7 +1195,10 @@ class StepperDataContextProvider extends Component {
             });
             this.props.history.push({
               pathname: 'moreinfo',
-              state: { fromLink: 'Residential' }
+              state: {
+                fromLink:
+                  this.state.language === 'eng' ? 'RESIDENTIAL' : 'RESIDENCIAL'
+              }
             });
           }
         } else {
@@ -1205,7 +1207,10 @@ class StepperDataContextProvider extends Component {
           });
           this.props.history.push({
             pathname: 'moreinfo',
-            state: { fromLink: 'Residential' }
+            state: {
+              fromLink:
+                this.state.language === 'eng' ? 'RESIDENTIAL' : 'RESIDENCIAL'
+            }
           });
         }
       } else {
@@ -1691,8 +1696,7 @@ class StepperDataContextProvider extends Component {
               {
                 isSelected: false,
                 item: 'Arm_Decorative_Chair',
-                sm:
-                  'Please include patio and all Armchair or decorative chairs in your move'
+                sm: 'Please include patio and all Armchair or decorative chairs in your move'
               },
               {
                 isSelected: false,
@@ -1721,8 +1725,7 @@ class StepperDataContextProvider extends Component {
               {
                 isSelected: false,
                 item: 'Dining_Room_Tables',
-                sm:
-                  'Please select the table surface, (wood, glass, metal, or marble )'
+                sm: 'Please select the table surface, (wood, glass, metal, or marble )'
               },
               { isSelected: false, item: 'Dining_Room_Chairs', sm: '' },
               {
@@ -1746,8 +1749,7 @@ class StepperDataContextProvider extends Component {
               {
                 isSelected: false,
                 item: 'Dresser',
-                sm:
-                  'Please indicate # of drawers Dresser with mirror or without'
+                sm: 'Please indicate # of drawers Dresser with mirror or without'
               }
             ],
             ListOfKitchen: [
@@ -1791,8 +1793,7 @@ class StepperDataContextProvider extends Component {
               {
                 isSelected: false,
                 item: 'Lamps',
-                sm:
-                  'Please include all lamps, indicate if it’s a stand or table lamp'
+                sm: 'Please include all lamps, indicate if it’s a stand or table lamp'
               },
               { isSelected: false, item: 'Ceiling_Fans', sm: '' },
               {
@@ -2009,6 +2010,7 @@ class StepperDataContextProvider extends Component {
           commercialCustomerId: contactRes.data.commercialCustomer._id
         });
         if (submitOrder.status === 200 || submitOrder.status === 201) {
+          console.log(this.state.from, this.state.cities);
           let jobsData = {
             status: 'unassigned',
             areaId: this.state.cities.filter(
@@ -2059,7 +2061,10 @@ class StepperDataContextProvider extends Component {
     if (flag) {
       this.props.history.push({
         pathname: 'reserve',
-        state: { fromLink: 'BookNow' }
+        state: {
+          fromLink:
+            this.state.language === 'eng' ? 'BOOK NOW' : 'RESERVAR AHORA'
+        }
       });
     }
     // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
@@ -2111,7 +2116,10 @@ class StepperDataContextProvider extends Component {
           });
           this.props.history.push({
             pathname: href,
-            state: { fromLink: 'BookNow' }
+            state: {
+              fromLink:
+                this.state.language === 'eng' ? 'BOOK NOW' : 'RESERVAR AHORA'
+            }
           });
         }
       }
@@ -2303,79 +2311,32 @@ class StepperDataContextProvider extends Component {
   };
 
   handleCardNumber = (e) => {
-    const value = e.target.value;
+    console.log(e);
+    const value = e;
 
-    if (value.length === 20) {
-      return;
-    } else if (value.length === 4) {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            cardNumber: value + ' '
-          }
-        };
-      });
-    } else if (value.length === 9) {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            cardNumber: value + ' '
-          }
-        };
-      });
-    } else if (value.length === 14) {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            cardNumber: value + ' '
-          }
-        };
-      });
-    } else {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            cardNumber: value
-          }
-        };
-      });
-    }
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        finalStepForm: {
+          ...prevState.finalStepForm,
+          cardNumber: value
+        }
+      };
+    });
   };
 
   handleExpiry = (e) => {
-    const value = e.target.value;
+    const value = e;
 
-    if (value.length === 6) {
-      return;
-    } else if (value.length === 2) {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            expiry: value + '/'
-          }
-        };
-      });
-    } else {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          finalStepForm: {
-            ...prevState.finalStepForm,
-            expiry: value
-          }
-        };
-      });
-    }
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        finalStepForm: {
+          ...prevState.finalStepForm,
+          expiry: value
+        }
+      };
+    });
   };
   handleCvc = (e) => {
     const value = e.target.value;
@@ -2431,10 +2392,10 @@ class StepperDataContextProvider extends Component {
           lastDetailsMovingToHandler: this.lastDetailsMovingToHandler,
           lastDetailsLoadingDockHandler: this.lastDetailsLoadingDockHandler,
           lastDetailsDoorRemovingHandler: this.lastDetailsDoorRemovingHandler,
-          lastDetaislMovingFromElevatorHandler: this
-            .lastDetaislMovingFromElevatorHandler,
-          lastDetaislMovingToElevatorHandler: this
-            .lastDetaislMovingToElevatorHandler,
+          lastDetaislMovingFromElevatorHandler:
+            this.lastDetaislMovingFromElevatorHandler,
+          lastDetaislMovingToElevatorHandler:
+            this.lastDetaislMovingToElevatorHandler,
           bookNowChangeHandlerFrom: this.bookNowChangeHandlerFrom,
           bookNowChangeHandlerTo: this.bookNowChangeHandlerTo,
           bookNowChangeHandlerDate: this.bookNowChangeHandlerDate,

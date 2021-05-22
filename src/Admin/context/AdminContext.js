@@ -120,7 +120,7 @@ class AdminContextProvider extends Component {
     try {
       let jobs = await axios.get('/jobs/getAll');
       if (jobs.status === 200) {
-        Geocode.setApiKey('AIzaSyAe-RvE9UpwF-SNkKvlpt4YpjOgDfaUCpQ');
+        Geocode.setApiKey('AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s');
         Geocode.setLanguage('en');
         Geocode.setRegion('pr');
         Geocode.enableDebug();
@@ -130,28 +130,38 @@ class AdminContextProvider extends Component {
             Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
             jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
           ) {
-            let responseFrom = await Geocode.fromLatLng(
+            console.log(
               jobs.data.jobs[i].orderId.origin.lat,
               jobs.data.jobs[i].orderId.origin.lon
             );
+            if (
+              jobs.data.jobs[i].orderId.origin.lat !== '' &&
+              jobs.data.jobs[i].orderId.origin.lon !== ''
+            ) {
+              let responseFrom = await Geocode.fromLatLng(
+                jobs.data.jobs[i].orderId.origin.lat,
+                jobs.data.jobs[i].orderId.origin.lon
+              );
 
-            const addressFrom = responseFrom.results[0].formatted_address;
-            // console.log(addressFrom.split(',')[1]);
-            jobs.data.jobs[i].from = addressFrom.split(',')[1];
+              const addressFrom = responseFrom.results[0].formatted_address;
+              // console.log(addressFrom.split(',')[1]);
+              jobs.data.jobs[i].from = addressFrom.split(',')[1];
 
-            let responseTo = await Geocode.fromLatLng(
-              jobs.data.jobs[i].orderId.destination.lat,
-              jobs.data.jobs[i].orderId.destination.lon
-            );
+              let responseTo = await Geocode.fromLatLng(
+                jobs.data.jobs[i].orderId.destination.lat,
+                jobs.data.jobs[i].orderId.destination.lon
+              );
 
-            const addressTo = responseTo.results[0].formatted_address;
-            // console.log(addressTo.split(',')[1]);
-            jobs.data.jobs[i].to = addressTo.split(',')[1];
+              const addressTo = responseTo.results[0].formatted_address;
+              // console.log(addressTo.split(',')[1]);
+              jobs.data.jobs[i].to = addressTo.split(',')[1];
+            }
           }
         }
         let data = jobs.data.jobs.filter((dataItems) => {
           return dataItems.from !== null && dataItems.to !== null;
         });
+        console.log(data);
         this.setState({
           reservations: data,
           loading: false

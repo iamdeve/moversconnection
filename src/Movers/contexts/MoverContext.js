@@ -89,7 +89,7 @@ class MoverContextProvider extends Component {
     try {
       let jobs = await axios.get('/jobs/getMoversJobs');
       if (jobs.status === 200) {
-        Geocode.setApiKey('AIzaSyAe-RvE9UpwF-SNkKvlpt4YpjOgDfaUCpQ');
+        Geocode.setApiKey('AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s');
         Geocode.setLanguage('en');
         Geocode.setRegion('pr');
         Geocode.enableDebug();
@@ -100,23 +100,28 @@ class MoverContextProvider extends Component {
               Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
               jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
             ) {
-              let responseFrom = await Geocode.fromLatLng(
-                jobs.data.jobs[i].orderId.origin.lat,
-                jobs.data.jobs[i].orderId.origin.lon
-              );
+              if (
+                jobs.data.jobs[i].orderId.origin.lat !== '' ||
+                jobs.data.jobs[i].orderId.origin.lon !== ''
+              ) {
+                let responseFrom = await Geocode.fromLatLng(
+                  jobs.data.jobs[i].orderId.origin.lat,
+                  jobs.data.jobs[i].orderId.origin.lon
+                );
 
-              const addressFrom = responseFrom.results[0].formatted_address;
-              // console.log(addressFrom.split(',')[1]);
-              jobs.data.jobs[i].from = addressFrom.split(',')[1];
+                const addressFrom = responseFrom.results[0].formatted_address;
+                // console.log(addressFrom.split(',')[1]);
+                jobs.data.jobs[i].from = addressFrom.split(',')[1];
 
-              let responseTo = await Geocode.fromLatLng(
-                jobs.data.jobs[i].orderId.destination.lat,
-                jobs.data.jobs[i].orderId.destination.lon
-              );
+                let responseTo = await Geocode.fromLatLng(
+                  jobs.data.jobs[i].orderId.destination.lat,
+                  jobs.data.jobs[i].orderId.destination.lon
+                );
 
-              const addressTo = responseTo.results[0].formatted_address;
-              // console.log(addressTo.split(',')[1]);
-              jobs.data.jobs[i].to = addressTo.split(',')[1];
+                const addressTo = responseTo.results[0].formatted_address;
+                // console.log(addressTo.split(',')[1]);
+                jobs.data.jobs[i].to = addressTo.split(',')[1];
+              }
             }
           }
           let data = jobs.data.jobs.filter((dataItems) => {
@@ -434,12 +439,11 @@ class MoverContextProvider extends Component {
       });
       return;
     }
-    if (this.state.profile.password && this.state.profile.password !== ''
-    ){
+    if (this.state.profile.password && this.state.profile.password !== '') {
       formData.append('password', this.state.profile.password);
     }
-    
-    if(this.state.profile.file && this.state.profile.file !== ''){
+
+    if (this.state.profile.file && this.state.profile.file !== '') {
       formData.append('profile', this.state.profile.file);
     }
 
@@ -481,7 +485,7 @@ class MoverContextProvider extends Component {
   };
 
   confirmJob = async (id) => {
-      this.setState({
+    this.setState({
       loader: true
     });
     console.log(this.state.mover);
@@ -519,8 +523,8 @@ class MoverContextProvider extends Component {
         });
       }
     }
-  }
-  markAsComplete = () => {}
+  };
+  markAsComplete = () => {};
 
   render() {
     return (
@@ -543,7 +547,6 @@ class MoverContextProvider extends Component {
           typeChangeHandlerProfile: this.typeChangeHandlerProfile,
           confirmJob: this.confirmJob,
           markAsComplete: this.markAsComplete
-
         }}>
         {this.props.children}
       </MoverContext.Provider>
