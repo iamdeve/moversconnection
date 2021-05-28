@@ -7,7 +7,7 @@ import App from './App';
 require('dotenv').config();
 
 ReactDOM.render(
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<div>Please wait...</div>}>
     <App />
   </Suspense>,
   document.getElementById('root')

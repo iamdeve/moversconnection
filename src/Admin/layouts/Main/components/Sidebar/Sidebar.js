@@ -6,7 +6,7 @@ import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { Profile, SidebarNav, UpgradePlan } from './components';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
     [theme.breakpoints.up('lg')]: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Sidebar = props => {
+const Sidebar = (props) => {
   const { open, variant, onClose, className, ...rest } = props;
 
   const classes = useStyles();
@@ -64,6 +64,11 @@ const Sidebar = props => {
     },
     //ab
     {
+      title: 'Category',
+      href: '/admin/category',
+      icon: <DashboardIcon />
+    },
+    {
       title: 'Items',
       href: '/admin/Items',
       icon: <DashboardIcon />
@@ -73,7 +78,7 @@ const Sidebar = props => {
       title: 'Towns',
       href: '/admin/Towns',
       icon: <DashboardIcon />
-    },
+    }
     // {
     //   title: 'Category',
     //   href: '/admin/Category',
@@ -108,18 +113,11 @@ const Sidebar = props => {
       classes={{ paper: classes.drawer }}
       onClose={onClose}
       open={open}
-      variant={variant}
-    >
-      <div
-        {...rest}
-        className={clsx(classes.root, className)}
-      >
+      variant={variant}>
+      <div {...rest} className={clsx(classes.root, className)}>
         <Profile />
         <Divider className={classes.divider} />
-        <SidebarNav
-          className={classes.nav}
-          pages={pages}
-        />
+        <SidebarNav className={classes.nav} pages={pages} />
         <UpgradePlan />
       </div>
     </Drawer>

@@ -221,7 +221,7 @@ class Orders extends React.Component {
                 },
                 {
                   title: 'From Location',
-                  field: 'from',
+                  field: 'reservationId.reservation.from',
 
                   cellStyle: {
                     fontFamily: 'calibri'
@@ -229,7 +229,7 @@ class Orders extends React.Component {
                 },
                 {
                   title: 'Location To',
-                  field: 'to',
+                  field: 'reservationId.reservation.to',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
@@ -238,14 +238,13 @@ class Orders extends React.Component {
                   title: 'Date',
                   // field: 'orderId.totalPrice',
                   render: (rowData) =>
-                    rowData.jobType === 'Commercial' ?
-                      rowData.orderId && rowData.orderId.date
+                    rowData.jobType === 'Commercial'
+                      ? rowData.orderId && rowData.orderId.date
                         ? getDateTime(rowData.orderId.date)
                         : ''
-                      :
-                      rowData.reservationId && rowData.reservationId.date
-                        ? getDateTime(rowData.reservationId.date)
-                        : '',
+                      : rowData.reservationId && rowData.reservationId.date
+                      ? getDateTime(rowData.reservationId.date)
+                      : '',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
@@ -254,14 +253,13 @@ class Orders extends React.Component {
                   title: 'Time',
                   // field: 'orderId.totalPrice',
                   render: (rowData) =>
-                    rowData.jobType === 'Commercial' ?
-                      rowData.orderId && rowData.orderId.date
+                    rowData.jobType === 'Commercial'
+                      ? rowData.orderId && rowData.orderId.date
                         ? formatAMPM(new Date(rowData.orderId.time))
                         : ''
-                      :
-                      rowData.reservationId && rowData.reservationId.time
-                        ? formatAMPM(new Date(rowData.reservationId.time))
-                        : '',
+                      : rowData.reservationId && rowData.reservationId.time
+                      ? formatAMPM(new Date(rowData.reservationId.time))
+                      : '',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
@@ -290,28 +288,36 @@ class Orders extends React.Component {
                         </>
                       )}
 
-                      {rowData.status === 'assigned' && rowData.jobType === 'Residential' && rowData.reservationId && new Date().getTime() + (1 * 24 * 60 * 60 * 1000) > Date.parse(new Date(rowData.reservationId.date)) && (
-                        <>
-                          <Button
-                            variant="contained"
-                            onClick={() =>
-                              this.context.confirmJob(rowData._id)
-                            }>
-                            Confirm
-                          </Button>
-                        </>
-                      )}
-                      {rowData.status === 'assigned' && rowData.jobType === 'Commercial' && rowData.orderId && new Date().getTime() + (1 * 24 * 60 * 60 * 1000) > Date.parse(new Date(rowData.orderId.date)) && (
-                        <>
-                          <Button
-                            variant="contained"
-                            onClick={() =>
-                              this.context.confirmJob(rowData._id)
-                            }>
-                            Confirm
-                          </Button>
-                        </>
-                      )}
+                      {rowData.status === 'assigned' &&
+                        rowData.jobType === 'Residential' &&
+                        rowData.reservationId &&
+                        new Date().getTime() + 1 * 24 * 60 * 60 * 1000 >
+                          Date.parse(new Date(rowData.reservationId.date)) && (
+                          <>
+                            <Button
+                              variant="contained"
+                              onClick={() =>
+                                this.context.confirmJob(rowData._id)
+                              }>
+                              Confirm
+                            </Button>
+                          </>
+                        )}
+                      {rowData.status === 'assigned' &&
+                        rowData.jobType === 'Commercial' &&
+                        rowData.orderId &&
+                        new Date().getTime() + 1 * 24 * 60 * 60 * 1000 >
+                          Date.parse(new Date(rowData.orderId.date)) && (
+                          <>
+                            <Button
+                              variant="contained"
+                              onClick={() =>
+                                this.context.confirmJob(rowData._id)
+                              }>
+                              Confirm
+                            </Button>
+                          </>
+                        )}
                       {rowData.status === 'confirmed' && (
                         <>
                           <Button

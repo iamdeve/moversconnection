@@ -94,36 +94,36 @@ class MoverContextProvider extends Component {
         Geocode.setRegion('pr');
         Geocode.enableDebug();
         if (jobs.data.jobs.length > 0) {
-          for (let i = 0; i < jobs.data.jobs.length; i++) {
-            if (
-              jobs.data.jobs[i].orderId !== null &&
-              Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
-              jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
-            ) {
-              if (
-                jobs.data.jobs[i].orderId.origin.lat !== '' ||
-                jobs.data.jobs[i].orderId.origin.lon !== ''
-              ) {
-                let responseFrom = await Geocode.fromLatLng(
-                  jobs.data.jobs[i].orderId.origin.lat,
-                  jobs.data.jobs[i].orderId.origin.lon
-                );
+          //   for (let i = 0; i < jobs.data.jobs.length; i++) {
+          //     if (
+          //       jobs.data.jobs[i].orderId !== null &&
+          //       Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
+          //       jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
+          //     ) {
+          //       if (
+          //         jobs.data.jobs[i].orderId.origin.lat !== '' ||
+          //         jobs.data.jobs[i].orderId.origin.lon !== ''
+          //       ) {
+          //         let responseFrom = await Geocode.fromLatLng(
+          //           jobs.data.jobs[i].orderId.origin.lat,
+          //           jobs.data.jobs[i].orderId.origin.lon
+          //         );
 
-                const addressFrom = responseFrom.results[0].formatted_address;
-                // console.log(addressFrom.split(',')[1]);
-                jobs.data.jobs[i].from = addressFrom.split(',')[1];
+          //         const addressFrom = responseFrom.results[0].formatted_address;
+          //         // console.log(addressFrom.split(',')[1]);
+          //         jobs.data.jobs[i].from = addressFrom.split(',')[1];
 
-                let responseTo = await Geocode.fromLatLng(
-                  jobs.data.jobs[i].orderId.destination.lat,
-                  jobs.data.jobs[i].orderId.destination.lon
-                );
+          //         let responseTo = await Geocode.fromLatLng(
+          //           jobs.data.jobs[i].orderId.destination.lat,
+          //           jobs.data.jobs[i].orderId.destination.lon
+          //         );
 
-                const addressTo = responseTo.results[0].formatted_address;
-                // console.log(addressTo.split(',')[1]);
-                jobs.data.jobs[i].to = addressTo.split(',')[1];
-              }
-            }
-          }
+          //         const addressTo = responseTo.results[0].formatted_address;
+          //         // console.log(addressTo.split(',')[1]);
+          //         jobs.data.jobs[i].to = addressTo.split(',')[1];
+          //       }
+          //     }
+          //   }
           let data = jobs.data.jobs.filter((dataItems) => {
             return dataItems.from !== null && dataItems.to !== null;
           });
@@ -205,7 +205,7 @@ class MoverContextProvider extends Component {
           );
 
           if (area.status === 200) {
-            console.log(area);
+            // console.log(area);
             this.setState((prevState) => {
               return { cities: [...prevState.cities, ...area.data.area] };
             });

@@ -76,171 +76,6 @@ class StepperDataContextProvider extends Component {
 
     title: 'TV',
 
-    OpenArmchair: false,
-    nameArmchair: '',
-
-    OpenFuton: false,
-    nameFuton: '',
-
-    OpenTV: false,
-    nameTV: '',
-
-    OpenSofa: false,
-    nameSofa: '',
-
-    OpenLoveSeat: false,
-    nameLoveSeat: '',
-
-    OpenSofaLShape: false,
-    nameSofaLShape: '',
-
-    OpenOttoman: false,
-    nameOttoman: '',
-
-    OpenReclinableChairs: false,
-    nameReclinableChairs: '',
-
-    OpenCornerTables: false,
-    nameCornerTables: '',
-
-    OpenCoffeeTables: false,
-    nameCoffeeTables: '',
-
-    OpenDecorativeTables: false,
-    nameDecorativeTables: '',
-
-    OpenDiningRoomTables: false,
-    nameDiningRoomTables: '',
-
-    OpenDiningRoomChairs: false,
-    nameDiningRoomChairs: '',
-
-    OpenBeds: false,
-    nameBeds: '',
-
-    OpenNightstandTables: false,
-    nameNightstandTables: '',
-
-    OpenChest: false,
-    nameChest: '',
-
-    OpenDresser: false,
-    nameDresser: '',
-
-    OpenFrames: false,
-    nameFrames: '',
-
-    OpenAreaRugs: false,
-    nameAreaRugs: '',
-
-    OpenLamps: false,
-    nameLamps: '',
-
-    OpenCeilingFans: false,
-    nameCeilingFans: '',
-
-    OpenDesks: false,
-    nameDesks: '',
-
-    OpenWindowAirConditionerUnits: false,
-    nameWindowAirConditionerUnits: '',
-
-    OpenWindowPackAirConditionerUnits: false,
-    nameDresser: '',
-
-    OpenInverterUnits: false,
-    nameInverterUnits: '',
-
-    OpenInverterUnitCompressors: false,
-    nameInverterUnitCompressors: '',
-
-    OpenBoxes: false,
-    nameBoxes: '',
-
-    OpenPoolTable: false,
-    namePoolTable: '',
-
-    OpenPingPongTable: false,
-    namePingPongTable: '',
-
-    OpenOutdoorBBQGrill: false,
-    nameOutdoorBBQGrill: '',
-
-    OpenFishTanks: false,
-    nameFishTanks: '',
-
-    OpenDogHouses: false,
-    nameDogHouses: '',
-
-    OpenOfficeChairs: false,
-    nameOfficeChairs: '',
-
-    OpenFlowerPots: false,
-    nameFlowerPots: '',
-
-    OpenGYMEquipments: false,
-    nameGYMEquipments: '',
-
-    OpenBenches: false,
-    nameBenches: '',
-
-    OpenBookCases: false,
-    nameBookCases: '',
-
-    OpenSculptures: false,
-    nameSculptures: '',
-
-    OpenMirrors: false,
-    nameMirrors: '',
-
-    OpenDesktopComputers: false,
-    nameDesktopComputers: '',
-
-    OpenGasTanks: false,
-    nameGasTanks: '',
-
-    OpenTVWallMounts: false,
-    nameTVWallMounts: '',
-
-    OpenRefrigerators: false,
-    nameRefrigerators: '',
-
-    OpenStoves: false,
-    nameStoves: '',
-
-    OpenDryers: false,
-    nameDryers: '',
-
-    OpenWashers: false,
-    nameWashers: '',
-
-    OpenDryerAndWasherCombos: false,
-    nameDryerAndWasherCombos: '',
-
-    OpenMicrowaveOvens: false,
-    nameMicrowaveOvens: '',
-
-    OpenDishwashers: false,
-    nameDishwashers: '',
-
-    OpenWineCoolers: false,
-    nameWineCoolers: '',
-
-    OpenToasterOvens: false,
-    nameToasterOvens: '',
-
-    OpenIndoorGrills: false,
-    nameIndoorGrills: '',
-
-    OpenCoffeeMachines: false,
-    nameCoffeeMachines: '',
-
-    OpenMiniFridges: false,
-    nameMiniFridges: '',
-
-    OpenChestFreezers: false,
-    nameChestFreezers: '',
-
     openModel: false,
     openModelDining: false,
     openModelBedroom: false,
@@ -1150,36 +985,35 @@ class StepperDataContextProvider extends Component {
     this.setState({
       loader: true
     });
-    // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-    Geocode.setApiKey('AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s');
+    // // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+    // Geocode.setApiKey('AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s');
 
-    // set response language. Defaults to english.
-    Geocode.setLanguage('en');
+    // // set response language. Defaults to english.
+    // Geocode.setLanguage('en');
 
-    // set response region. Its optional.
-    // A Geocoding request with region=es (Spain) will return the Spanish city.
-    Geocode.setRegion('pr');
+    // // set response region. Its optional.
+    // // A Geocoding request with region=es (Spain) will return the Spanish city.
+    // Geocode.setRegion('pr');
 
-    // Enable or disable logs. Its optional.
-    Geocode.enableDebug();
+    // // Enable or disable logs. Its optional.
+    // Geocode.enableDebug();
 
+    //   let fromResponse = await Geocode.fromAddress(this.state.from);
+    //   // let { lat, lng } = fromResponse.results[0].geometry.location;
+    //   console.log(fromResponse);
+    //   await this.setState({
+    //     fromLatitude: fromResponse.results[0].geometry.location.lat,
+    //     fromLongitude: fromResponse.results[0].geometry.location.lng
+    //   });
+
+    //   let toResponse = await Geocode.fromAddress(this.state.to);
+    //   console.log(toResponse);
+    //   // let { lat, lng } = toResponse.results[0].geometry.location;
+    //   await this.setState({
+    //     toLatitude: toResponse.results[0].geometry.location.lat,
+    //     toLongitude: toResponse.results[0].geometry.location.lng
+    //   });
     try {
-      let fromResponse = await Geocode.fromAddress(this.state.from);
-      // let { lat, lng } = fromResponse.results[0].geometry.location;
-      console.log(fromResponse);
-      await this.setState({
-        fromLatitude: fromResponse.results[0].geometry.location.lat,
-        fromLongitude: fromResponse.results[0].geometry.location.lng
-      });
-
-      let toResponse = await Geocode.fromAddress(this.state.to);
-      console.log(toResponse);
-      // let { lat, lng } = toResponse.results[0].geometry.location;
-      await this.setState({
-        toLatitude: toResponse.results[0].geometry.location.lat,
-        toLongitude: toResponse.results[0].geometry.location.lng
-      });
-
       console.log(moreInfoLink, contact);
       if (moreInfoLink) {
         if (this.state.customerName !== '') {
@@ -1231,18 +1065,33 @@ class StepperDataContextProvider extends Component {
   };
 
   handleMoreInfoNextHandle = async (url) => {
+    console.log(this.state.from, this.state.to);
+    let fromLatitude = this.state.cities.filter((c) =>
+      c.name.includes(this.state.from)
+    )[0].coordinates.lat;
+    let fromLongitude = this.state.cities.filter((c) =>
+      c.name.includes(this.state.from)
+    )[0].coordinates.lng;
+
+    let toLatitude = this.state.cities.filter((c) =>
+      c.name.includes(this.state.to)
+    )[0].coordinates.lat;
+    let toLongitude = this.state.cities.filter((c) =>
+      c.name.includes(this.state.to)
+    )[0].coordinates.lng;
+
     this.setState({
       loader: true
     });
     // console.log(this.state.details);
     let order = {
       origin: {
-        lat: this.state.fromLatitude,
-        lon: this.state.fromLongitude
+        lat: fromLatitude,
+        lon: fromLongitude
       },
       destination: {
-        lat: this.state.toLatitude,
-        lon: this.state.toLongitude
+        lat: toLatitude,
+        lon: toLongitude
       },
       items: []
     };
@@ -2278,7 +2127,7 @@ class StepperDataContextProvider extends Component {
 
       if (allZones.status === 200) {
         for (let i = 0; i < allZones.data.zones.length; i++) {
-          console.log(allZones);
+          // console.log(allZones);
           let area = await axios.get(
             `/area/getAreaByZone/${allZones.data.zones[i]._id}`
           );

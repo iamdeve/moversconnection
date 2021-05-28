@@ -7,10 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/styles';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import { AdminContext } from './../../../context/AdminContext';
+import { AdminContext } from '../../context/AdminContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,36 +27,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AdminItemsModel(props) {
+export default function CategoryModel(props) {
   const classes = useStyles();
   const AdminContext1 = useContext(AdminContext);
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
 
-  //cpmponent states
-  const [Category, setCategory] = React.useState('LivingRoom');
-  const [ItemName, setItemName] = React.useState('');
-  const [ItemPrice, setItemPrice] = React.useState('');
-
-  const handleClickOpen = (scrollType) => () => {
-    setOpen(true);
-    setScroll(scrollType);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event) => {
-    let category = event.target.value;
-    setCategory(category);
-  };
+  const [categoryName, setCategoryName] = React.useState('');
 
   const handleSubmit = async () => {
-    let itemData = { ItemName, ItemPrice, Category };
+    let data = { name: categoryName };
     try {
-      let { data } = await AdminContext1.handleNewItems(itemData);
-      console.log('Data', data);
+      let addResponse = await AdminContext1.handleNewCategory(data);
+      console.log('Data', addResponse);
     } catch (err) {
       console.log(err);
     }
@@ -67,10 +46,10 @@ export default function AdminItemsModel(props) {
 
   const handleSubmitUpdate = async () => {
     let id = props.editData._id;
-    let UpdateData = { id, ItemName, ItemPrice, Category };
+    let UpdateData = { id, categoryName };
     // console.log(id);
     try {
-      let { data } = await AdminContext1.handleUpdataItems(UpdateData);
+      let { data } = await AdminContext1.handleUpdataCategory(UpdateData);
       console.log('Data', data);
     } catch (err) {
       console.log(err);
@@ -89,9 +68,7 @@ export default function AdminItemsModel(props) {
   React.useEffect(() => {
     if (props.editData) {
       setOpen(true);
-      setCategory(props.editData.categoryName);
-      setItemName(props.editData.name);
-      setItemPrice(props.editData.cost);
+      setCategoryName(props.editData.name);
     }
   }, [props.editData]);
 
@@ -105,7 +82,7 @@ export default function AdminItemsModel(props) {
         aria-describedby="scroll-dialog-description">
         <DialogTitle id="scroll-dialog-title">
           {/* Add New Items */}
-          {!props.editData ? 'Add New Items' : 'Edit Item'}
+          {!props.editData ? 'Add New Category' : 'Edit Category'}
         </DialogTitle>
         <DialogContent dividers={'paper'}>
           <DialogContent
@@ -115,37 +92,14 @@ export default function AdminItemsModel(props) {
             <div className={classes.TextInput}>
               <TextField
                 className={classes.Input}
-                value={ItemName}
+                value={categoryName}
                 onChange={(e) => {
-                  setItemName(e.target.value);
+                  setCategoryName(e.target.value);
                 }}
                 id="standard-basic"
-                label="Item Name"
+                label="Category Name"
               />
             </div>
-            <div className={classes.TextInput}>
-              <TextField
-                className={classes.Input}
-                value={ItemPrice}
-                onChange={(e) => {
-                  setItemPrice(e.target.value);
-                }}
-                id="standard-basic"
-                label="Item Price"
-              />
-            </div>
-            <h6>Select Item Category</h6>
-            <FormControl
-              className={classes.formControl}
-              style={{ marginLeft: '5px' }}>
-              <Select native onChange={handleChange} defaultValue={Category}>
-                <option value={'Living Room'}>Living Room</option>
-                <option value={'Bed Room'}>Bed Rooms</option>
-                <option value={'Dining Room'}>Dining Rooms</option>
-                <option value={'Kitchen'}>Kitchen</option>
-                <option value={'Miscellaneous'}>MIscelleaneous</option>
-              </Select>
-            </FormControl>
           </DialogContent>
         </DialogContent>
         <DialogActions>

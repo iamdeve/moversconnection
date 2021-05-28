@@ -7,13 +7,13 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
-
 import Routes from './Routes';
 import StepperDataContextProvider from 'contexts/StepperDataContext';
 import MoverContextProvider from './Movers/contexts/MoverContext';
 import AdminContextProvider from './Admin/context/AdminContext';
 const browserHistory = createBrowserHistory();
-
+require('dotenv').config();
+console.log(process.env);
 export default class App extends Component {
   render() {
     return (

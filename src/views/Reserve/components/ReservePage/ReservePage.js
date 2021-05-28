@@ -280,7 +280,9 @@ const ReservePage = (props) => {
                         className: classes.inputColor
                       }}
                       id="combo-box-demo"
-                      options={context.cities.map((city) => city.name)}
+                      options={context.cities.map(
+                        (city) => city.name.split(',')[0]
+                      )}
                       style={{ width: 300 }}
                       openOnFocus={true}
                       defaultValue={context.from}
@@ -323,7 +325,9 @@ const ReservePage = (props) => {
                         className: classes.inputColor
                       }}
                       id="combo-box-demo"
-                      options={context.cities.map((city) => city.name)}
+                      options={context.cities.map(
+                        (city) => city.name.split(',')[0]
+                      )}
                       style={{ width: 300 }}
                       defaultValue={context.to}
                       onChange={(e, v) => context.reserveChangeHandlerTo(v)}

@@ -214,7 +214,7 @@ class Orders extends React.Component {
                   },
                   {
                     title: 'From Location',
-                    field: 'from',
+                    field: 'reservationId.reservation.from',
                     render: (rowData, index, i) => <span>{rowData.from} </span>,
                     cellStyle: {
                       fontFamily: 'calibri'
@@ -222,7 +222,7 @@ class Orders extends React.Component {
                   },
                   {
                     title: 'To Location',
-                    field: 'to',
+                    field: 'reservationId.reservation.to',
                     cellStyle: {
                       fontFamily: 'calibri'
                     }

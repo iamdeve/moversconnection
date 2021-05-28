@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
-import { AdminContext } from './../../../context/AdminContext';
+import { AdminContext } from '../../context/AdminContext';
 import MaterialTable from 'material-table';
 import { Card, Button, Switch } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import AdminItemsModel from './adminItemsModel';
+import CategoryModel from './CategoryModel';
 
 import {
   Check,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ItemsTable = (props) => {
+const CategoryTable = (props) => {
   const { className, users, ...rest } = props;
   const AdminContext1 = useContext(AdminContext);
   const classes = useStyles();
@@ -57,53 +57,11 @@ const ItemsTable = (props) => {
   const [OpenEditModel, setOpenModel] = React.useState(false);
   const [CurrentEdit, setCurrentEdit] = React.useState(null);
 
-  const handleSelectAll = (event) => {
-    const { users } = props;
-
-    let selectedUsers;
-
-    if (event.target.checked) {
-      selectedUsers = users.map((user) => user.id);
-    } else {
-      selectedUsers = [];
-    }
-
-    setSelectedUsers(selectedUsers);
-  };
-
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedUsers.indexOf(id);
-    let newSelectedUsers = [];
-
-    if (selectedIndex === -1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-    } else if (selectedIndex === 0) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-    } else if (selectedIndex === selectedUsers.length - 1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedUsers = newSelectedUsers.concat(
-        selectedUsers.slice(0, selectedIndex),
-        selectedUsers.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedUsers(newSelectedUsers);
-  };
-
-  const handlePageChange = (event, page) => {
-    setPage(page);
-  };
-
-  const handleRowsPerPageChange = (event) => {
-    setRowsPerPage(event.target.value);
-  };
   const handleItemDelete = (rowData) => {
-    AdminContext1.handleItemDelete2(rowData);
+    AdminContext1.handleCategoryDelete(rowData);
   };
   const handleEditItems = (rowData) => {
     setOpenModel(true);
-    console.log('ali raza', rowData);
     setCurrentEdit(rowData);
   };
   const handleClose = () => {
@@ -131,22 +89,8 @@ const ItemsTable = (props) => {
                   }
                 },
                 {
-                  title: 'Item Name',
+                  title: 'Category Name',
                   field: 'name',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
-                {
-                  title: 'Price',
-                  field: 'cost',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
-                {
-                  title: 'Category',
-                  field: 'categoryName',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
@@ -185,7 +129,7 @@ const ItemsTable = (props) => {
                   }
                 }
               ]}
-              data={context.AllItems}
+              data={context.categories}
               icons={{
                 Check: Check,
                 DetailPanel: ChevronRight,
@@ -223,7 +167,7 @@ const ItemsTable = (props) => {
               title=""
             />
             {CurrentEdit && (
-              <AdminItemsModel
+              <CategoryModel
                 open={OpenEditModel}
                 editData={CurrentEdit}
                 handleClose={handleClose}
@@ -238,9 +182,9 @@ const ItemsTable = (props) => {
   );
 };
 
-ItemsTable.propTypes = {
+CategoryTable.propTypes = {
   className: PropTypes.string,
   users: PropTypes.array.isRequired
 };
 
-export default ItemsTable;
+export default CategoryTable;

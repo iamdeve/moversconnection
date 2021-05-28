@@ -26,7 +26,8 @@ class AdminContextProvider extends Component {
       loading: false,
       movers: [],
       commercial: [],
-      reservations: []
+      reservations: [],
+      categoreis: []
     };
   }
 
@@ -38,6 +39,7 @@ class AdminContextProvider extends Component {
     this.getAllItems();
     this.getAllTowns();
     this.getAllZones();
+    this.getAllCategories();
     // this.handleItemDelete2();
   }
   // gettAll Settings
@@ -47,6 +49,16 @@ class AdminContextProvider extends Component {
       let { data: adminSettings } = await axios.get('/settings/getAllSettings');
       this.setState({
         AdminSettings: adminSettings[0]
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  getAllCategories = async () => {
+    try {
+      let category = await axios.get('/category/getAll');
+      this.setState({
+        categories: category.data.categories
       });
     } catch (err) {
       console.log(err);
@@ -124,40 +136,40 @@ class AdminContextProvider extends Component {
         Geocode.setLanguage('en');
         Geocode.setRegion('pr');
         Geocode.enableDebug();
-        for (let i = 0; i < jobs.data.jobs.length; i++) {
-          if (
-            jobs.data.jobs[i].orderId !== null &&
-            Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
-            jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
-          ) {
-            console.log(
-              jobs.data.jobs[i].orderId.origin.lat,
-              jobs.data.jobs[i].orderId.origin.lon
-            );
-            if (
-              jobs.data.jobs[i].orderId.origin.lat !== '' &&
-              jobs.data.jobs[i].orderId.origin.lon !== ''
-            ) {
-              let responseFrom = await Geocode.fromLatLng(
-                jobs.data.jobs[i].orderId.origin.lat,
-                jobs.data.jobs[i].orderId.origin.lon
-              );
+        // for (let i = 0; i < jobs.data.jobs.length; i++) {
+        //   if (
+        //     jobs.data.jobs[i].orderId !== null &&
+        //     Object.keys(jobs.data.jobs[i].orderId).length > 0 &&
+        //     jobs.data.jobs[i].orderId.origin.hasOwnProperty('lat')
+        //   ) {
+        //     console.log(
+        //       jobs.data.jobs[i].orderId.origin.lat,
+        //       jobs.data.jobs[i].orderId.origin.lon
+        //     );
+        //     if (
+        //       jobs.data.jobs[i].orderId.origin.lat !== '' &&
+        //       jobs.data.jobs[i].orderId.origin.lon !== ''
+        //     ) {
+        //       let responseFrom = await Geocode.fromLatLng(
+        //         jobs.data.jobs[i].orderId.origin.lat,
+        //         jobs.data.jobs[i].orderId.origin.lon
+        //       );
 
-              const addressFrom = responseFrom.results[0].formatted_address;
-              // console.log(addressFrom.split(',')[1]);
-              jobs.data.jobs[i].from = addressFrom.split(',')[1];
+        //       const addressFrom = responseFrom.results[0].formatted_address;
+        //       // console.log(addressFrom.split(',')[1]);
+        //       jobs.data.jobs[i].from = addressFrom.split(',')[1];
 
-              let responseTo = await Geocode.fromLatLng(
-                jobs.data.jobs[i].orderId.destination.lat,
-                jobs.data.jobs[i].orderId.destination.lon
-              );
+        //       let responseTo = await Geocode.fromLatLng(
+        //         jobs.data.jobs[i].orderId.destination.lat,
+        //         jobs.data.jobs[i].orderId.destination.lon
+        //       );
 
-              const addressTo = responseTo.results[0].formatted_address;
-              // console.log(addressTo.split(',')[1]);
-              jobs.data.jobs[i].to = addressTo.split(',')[1];
-            }
-          }
-        }
+        //       const addressTo = responseTo.results[0].formatted_address;
+        //       // console.log(addressTo.split(',')[1]);
+        //       jobs.data.jobs[i].to = addressTo.split(',')[1];
+        //     }
+        //   }
+        // }
         let data = jobs.data.jobs.filter((dataItems) => {
           return dataItems.from !== null && dataItems.to !== null;
         });
@@ -346,23 +358,24 @@ class AdminContextProvider extends Component {
   handleTownData = async (townData) => {
     console.log('Town Context', townData);
     try {
-      const { data } = await axios.post('/area/addArea', {
-        name: townData.townName,
+      const response = await axios.post('/area/addArea', {
+        name: townData.address,
         description: townData.townDes,
+        coordinates: townData.latLng,
         zoneId: townData.zone
       });
-      console.log(data);
+      if (response.status === 200 || response.status === 201) {
+        this.getAllTowns();
+      }
     } catch (err) {
       console.log(err);
     }
   };
   handleItemDelete2 = (id) => {
-    console.log('vvvbvbvbvbvbvbvvvvv', id);
     const { data } = axios.delete('delete/deleteItem/' + id);
     console.log(data);
   };
   handleItemDelete = (id) => {
-    console.log('bbbbbbbbbbbbbbb', id);
     const { data } = axios.delete('/area/deleteArea/' + id);
   };
   handleUpdataItems = (UpdateData) => {
@@ -371,25 +384,66 @@ class AdminContextProvider extends Component {
     const { data } = axios.put('update/updateItem/' + id, {
       name: UpdateData.ItemName,
       cost: UpdateData.ItemPrice,
+
       categoryName: UpdateData.Category
     });
     console.log(data);
   };
-  handleUpdateTowns = (UpdateData) => {
-    console.log('ghghghghgh', UpdateData);
+  handleUpdateTowns = async (UpdateData) => {
+    console.log('Town Context', UpdateData);
     let id = UpdateData.id;
-    const { data } = axios.put('/area/updateArea/' + id, {
-      name: UpdateData.townName,
-      description: UpdateData.townDes,
-      zoneId: UpdateData.zone
-    });
-    console.log('data', data);
+    try {
+      const response = await axios.put('/area/updateArea/' + id, {
+        name: UpdateData.address,
+        description: UpdateData.townDes,
+        coordinates: UpdateData.latLng,
+        zoneId: UpdateData.zone
+      });
+      if (response.status === 200) {
+        this.getAllTowns();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  handleNewCategory = async (cat) => {
+    try {
+      const { data } = await axios.post('/category/addCategory', {
+        name: cat.name
+      });
+      console.log(data);
+      this.getAllCategories();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  handleUpdataCategory = async (UpdateData) => {
+    console.log(UpdateData);
+    let id = UpdateData.id;
+    try {
+      const data = await axios.put('/category/updateCategory/' + id, {
+        name: UpdateData.categoryName
+      });
+      console.log(data);
+      this.getAllCategories();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  handleCategoryDelete = async (id) => {
+    try {
+      const deleteResponse = await axios.delete(
+        'category/deleteCategory/' + id
+      );
+      console.log(deleteResponse);
+      this.getAllCategories();
+    } catch (err) {
+      console.log(err);
+    }
   };
   render() {
-    // { console.log(this.state.formType) }
-    {
-      console.log(this.state.Allzones);
-    }
     return (
       <AdminContext.Provider
         value={{
@@ -413,7 +467,10 @@ class AdminContextProvider extends Component {
           handleUpdataItems: this.handleUpdataItems,
           handleTownData: this.handleTownData,
           handleUpdateTowns: this.handleUpdateTowns,
-          handleItemDelete: this.handleItemDelete
+          handleItemDelete: this.handleItemDelete,
+          handleNewCategory: this.handleNewCategory,
+          handleUpdataCategory: this.handleUpdataCategory,
+          handleCategoryDelete: this.handleCategoryDelete
         }}>
         {this.props.children}
       </AdminContext.Provider>

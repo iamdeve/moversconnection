@@ -334,14 +334,14 @@ class AdminResedential extends React.Component {
                 },
                 {
                   title: 'From Location',
-                  field: 'from',
+                  field: 'reservationId.reservation.from',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
                 },
                 {
                   title: 'To Location',
-                  field: 'to',
+                  field: 'reservationId.reservation.to',
                   cellStyle: {
                     fontFamily: 'calibri'
                   }

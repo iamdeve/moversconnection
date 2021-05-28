@@ -103,7 +103,6 @@ const TownTable = (props) => {
   };
   const handleEditTown = (rowData) => {
     setOpenModel(true);
-    console.log('ali raza', rowData);
     setCurrentEdit(rowData);
   };
   const handleClose = () => {
@@ -132,18 +131,21 @@ const TownTable = (props) => {
                 },
                 {
                   title: 'Town Name',
-                  field: 'name',
+                  // field: 'name',
+                  render: (rowData) => (
+                    <span>{rowData.name.split(',')[0]}</span>
+                  ),
                   cellStyle: {
                     fontFamily: 'calibri'
                   }
                 },
-                {
-                  title: 'Descripton',
-                  field: 'description',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
+                // {
+                //   title: 'Descripton',
+                //   field: 'description',
+                //   cellStyle: {
+                //     fontFamily: 'calibri'
+                //   }
+                // },
                 {
                   title: 'Zone',
                   field: 'zoneId.name',

@@ -11,6 +11,12 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import { AdminContext } from './../../../context/AdminContext';
 import Towns from './../adminTowns';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng
+} from 'react-places-autocomplete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +41,30 @@ export default function AdminTownModel(props) {
   const AdminContext1 = useContext(AdminContext);
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+  const [address, setAddress] = React.useState('');
+  const [latLng, setLatLng] = React.useState(null);
 
   //cpmponent states
   const [townName, settownName] = React.useState('');
   const [townDes, settownDes] = React.useState('');
-  const [zone, setzone] = React.useState('');
+  const [zone, setzone] = React.useState('0');
+
+  const handleChangeLocation = (address) => {
+    console.log(address);
+    setAddress(address);
+  };
+
+  const handleSelectLocation = (address) => {
+    console.log(address);
+    setAddress(address);
+    geocodeByAddress(address)
+      .then((results) => getLatLng(results[0]))
+      .then(
+        (latLng) =>
+          setLatLng(latLng) /*console.log('Success', latLng, address)*/
+      )
+      .catch((error) => console.error('Error', error));
+  };
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -56,7 +81,7 @@ export default function AdminTownModel(props) {
   };
 
   const handleSubmit = async () => {
-    let townData = { townName, townDes, zone };
+    let townData = { address, townDes, latLng, zone };
     try {
       let data = await AdminContext1.handleTownData(townData);
       console.log('Data', data);
@@ -67,7 +92,7 @@ export default function AdminTownModel(props) {
 
   const handleSubmitUpdate = async () => {
     let id = props.TowneditData._id;
-    let UpdateData = { id, townName, townDes, zone };
+    let UpdateData = { id, address, townDes, latLng, zone };
     console.log(id);
     try {
       let data = await AdminContext1.handleUpdateTowns(UpdateData);
@@ -87,15 +112,15 @@ export default function AdminTownModel(props) {
     }
   }, [open]);
   React.useEffect(() => {
+    console.log(props);
     if (props.TowneditData) {
       setOpen(true);
-      settownName(props.TowneditData.name);
+      setAddress(props.TowneditData.name);
       settownDes(props.TowneditData.description);
-      setzone(props.TowneditData.zoneId.name);
+      setzone(props.TowneditData.zoneId._id);
     }
   }, [props.TowneditData]);
-  // console.log("hassan",townName,townDes,zone)
-  console.log(zone);
+
   return (
     <div>
       <Dialog
@@ -113,7 +138,73 @@ export default function AdminTownModel(props) {
             ref={descriptionElementRef}
             tabIndex={-1}>
             <div className={classes.TextInput}>
-              <TextField
+              <PlacesAutocomplete
+                value={address}
+                onChange={handleChangeLocation}
+                onSelect={handleSelectLocation}>
+                {({
+                  getInputProps,
+                  suggestions,
+                  getSuggestionItemProps,
+                  loading
+                }) => (
+                  <div>
+                    <TextField
+                      {...getInputProps({
+                        placeholder: 'Search Places ...',
+                        className: 'location-search-input'
+                      })}
+                      label="Town Name"
+                      // name='address'
+                      // onChange={this.context.handleChange}
+                      // value={this.context.address}
+                      // label='Pickup Address'
+                      // multiline
+                      // rowsMax={2}
+                      style={{
+                        paddingBottom: '80px',
+                        //   width: "100%",
+                        width: '280px',
+                        height: '31px'
+                      }}
+                    />
+                    {/* <input
+											{...getInputProps({
+												placeholder: 'Search Places ...',
+												className: 'location-search-input',
+											})}
+										/> */}
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? {
+                              backgroundColor: '#fafafa',
+                              cursor: 'pointer'
+                            }
+                          : {
+                              backgroundColor: '#ffffff',
+                              cursor: 'pointer'
+                            };
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style
+                            })}>
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+              {/* <TextField
                 className={classes.Input}
                 value={townName}
                 onChange={(e) => {
@@ -121,9 +212,9 @@ export default function AdminTownModel(props) {
                 }}
                 id="standard-basic"
                 label="Town Name"
-              />
+              /> */}
             </div>
-            <div className={classes.TextInput}>
+            {/* <div className={classes.TextInput}>
               <TextField
                 className={classes.Input}
                 value={townDes}
@@ -133,12 +224,17 @@ export default function AdminTownModel(props) {
                 id="standard-basic"
                 label="Town Dsecription"
               />
-            </div>
-            <h6>Select Town Category</h6>
+            </div> */}
+            <h6>Select Town Zone</h6>
             <FormControl
               className={classes.formControl}
-              style={{ marginLeft: '5px', marginBottom: '50px' }}>
-              <Select native onChange={handleChange}>
+              style={{
+                marginLeft: '5px',
+                marginBottom: '50px',
+                width: '100%'
+              }}>
+              <Select native defaultValue={zone} onChange={handleChange}>
+                <option value="0">Please Select Zone</option>
                 {AdminContext1.Allzones.map((zone, id) => {
                   return (
                     <option value={zone._id} key={id}>
@@ -154,6 +250,7 @@ export default function AdminTownModel(props) {
           {props.TowneditData ? (
             <Button
               color="primary"
+              disabled={zone === '0'}
               onClick={() => {
                 handleSubmitUpdate();
               }}>
@@ -161,6 +258,7 @@ export default function AdminTownModel(props) {
             </Button>
           ) : (
             <Button
+              disabled={zone === '0'}
               onClick={() => {
                 handleSubmit();
               }}
