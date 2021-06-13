@@ -139,7 +139,24 @@ const ItemsTable = (props) => {
                 },
                 {
                   title: 'Price',
-                  field: 'cost',
+                  // field: 'price',
+                  render: (rowData) => (
+                    <div>
+                      {rowData.cost !== '' || rowData.cost !== undefined
+                        ? rowData.cost
+                        : null}
+                      {rowData.sizing &&
+                        rowData.sizing.length > 0 &&
+                        rowData.sizing.map((size) => (
+                          <div>
+                            <span style={{ fontWeight: 'bold' }}>
+                              {size.sizing}
+                            </span>{' '}
+                            : <span>{size.price}</span>
+                          </div>
+                        ))}
+                    </div>
+                  ),
                   cellStyle: {
                     fontFamily: 'calibri'
                   }

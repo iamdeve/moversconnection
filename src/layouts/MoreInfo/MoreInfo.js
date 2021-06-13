@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     backgroundPosition: 'bottom left',
     backgroundRepeat: 'no-repeat',
+    backgroundSize: '38%',
     // backgroundSize: '45%',
     '@media(max-width: 787px)': {
       overflow: 'scroll',

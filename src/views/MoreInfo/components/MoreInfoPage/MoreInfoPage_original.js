@@ -326,13 +326,11 @@ class MoreInfoPage extends React.Component {
             </Typography>
           </Grid>
         </Grid>
-
-        <Grid container className={classes.MT}></Grid>
-
         <Grid
           container
           xs={12}
           className={classes.FormContainer}
+          style={{}}
           className={classes.MT}>
           <Grid container xs={0} sm={2} lg={2} />
           <Grid container xs={12} sm={12} lg={8} justify="space-evenly">

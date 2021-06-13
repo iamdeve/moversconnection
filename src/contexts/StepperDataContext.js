@@ -81,6 +81,8 @@ class StepperDataContextProvider extends Component {
     openModelBedroom: false,
     openModelKitchen: false,
     openModelMiscellaneous: false,
+    categories: [],
+    allItems: [],
     ListOfLivingRoom: [
       {
         isSelected: false,
@@ -1099,44 +1101,44 @@ class StepperDataContextProvider extends Component {
     try {
       if (this.state.livingRoom !== '') {
         try {
-          let livingRoomRes = await axios.post('category/addCategory', {
-            name: 'Living Room'
-          });
-          if (livingRoomRes.status === 200 || livingRoomRes.status === 201) {
-            let livingRoomCategoryType = await axios.post(`types/addType`, {
-              name: 'livingroom types',
-              categoryId: livingRoomRes.data.category._id
-            });
-            if (
-              livingRoomCategoryType.status === 200 ||
-              livingRoomCategoryType.status === 201
-            ) {
-              for (let i = 0; i < this.state.ListOfLivingRoom.length; i++) {
-                let items = this.state.ListOfLivingRoom[i];
-                if (items.isSelected) {
-                  let item = await axios.post(`items/addItem`, {
-                    name: items.item.replace(/_/g, ' '),
-                    cost: this.state.details[items.item].reduce(
-                      (total, num) => {
-                        return total + num.price;
-                      },
-                      0
-                    ),
-                    categoryName: 'Living Room',
-                    sizing: [...this.state.details[items.item]],
-                    typeId: livingRoomCategoryType.data.type._id,
-                    description: 'testing'
-                  });
-                  if (item.status === 200 || item.status === 201) {
-                    order.items.push({
-                      id: item.data.item._id,
-                      quantity: this.state.details[items.item].length
-                    });
-                  }
-                }
-              }
+          // let livingRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Living Room'
+          // });
+          // if (livingRoomRes.status === 200 || livingRoomRes.status === 201) {
+          // let livingRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'livingroom types',
+          //   categoryId: livingRoomRes.data.category._id
+          // });
+          // if (
+          //   livingRoomCategoryType.status === 200 ||
+          //   livingRoomCategoryType.status === 201
+          // ) {
+          for (let i = 0; i < this.state.ListOfLivingRoom.length; i++) {
+            let items = this.state.ListOfLivingRoom[i];
+            if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Living Room',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: livingRoomCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
+              order.items.push({
+                id: items.id,
+                cost: this.state.details[items.item].reduce((total, num) => {
+                  return total + num.price;
+                }, 0),
+                quantity: this.state.details[items.item].length
+              });
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -1149,43 +1151,46 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.diningRoom !== '') {
         try {
-          let diningRoomRes = await axios.post('category/addCategory', {
-            name: 'Dining Room'
-          });
-          if (diningRoomRes.status === 200 || diningRoomRes.status === 201) {
-            let diningRoomCategoryType = await axios.post(`types/addType`, {
-              name: 'diningroom types',
-              categoryId: diningRoomRes.data.category._id
-            });
-            if (
-              diningRoomCategoryType.status === 200 ||
-              diningRoomCategoryType.status === 201
-            ) {
-              for (let j = 0; j < this.state.ListOfDiningRoom.length; j++) {
-                let items = this.state.ListOfDiningRoom[j];
-                if (items.isSelected) {
-                  let item = await axios.post(`items/addItem`, {
-                    name: items.item.replace(/_/g, ' '),
-                    cost: this.state.details[items.item].reduce(
-                      (total, num) => {
-                        return total + num.price;
-                      },
-                      0
-                    ),
-                    categoryName: 'Dining Room',
-                    sizing: [...this.state.details[items.item]],
-                    typeId: diningRoomCategoryType.data.type._id,
-                    description: 'testing'
-                  });
-                  if (item.status === 200 || item.status === 201) {
-                    order.items.push({
-                      id: item.data.item._id,
-                      quantity: this.state.details[items.item].length
-                    });
-                  }
-                }
-              }
+          // let diningRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Dining Room'
+          // });
+          // if (diningRoomRes.status === 200 || diningRoomRes.status === 201) {
+          // let diningRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'diningroom types',
+          //   categoryId: diningRoomRes.data.category._id
+          // });
+          // if (
+          //   diningRoomCategoryType.status === 200 ||
+          //   diningRoomCategoryType.status === 201
+          // ) {
+          for (let j = 0; j < this.state.ListOfDiningRoom.length; j++) {
+            let items = this.state.ListOfDiningRoom[j];
+            if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce(
+              //     (total, num) => {
+              //       return total + num.price;
+              //     },
+              //     0
+              //   ),
+              //   categoryName: 'Dining Room',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: diningRoomCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
+              order.items.push({
+                cost: this.state.details[items.item].reduce((total, num) => {
+                  return total + num.price;
+                }, 0),
+                id: items.id,
+                quantity: this.state.details[items.item].length
+              });
+              // }
+              // }
             }
+            // }
           }
         } catch (err) {
           console.log(err);
@@ -1199,42 +1204,45 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.bedRoom !== '') {
         try {
-          let bedRoomRes = await axios.post('category/addCategory', {
-            name: 'Bed Room'
-          });
-          if (bedRoomRes.status === 200 || bedRoomRes.status === 201) {
-            let bedRoomCategoryType = await axios.post(`types/addType`, {
-              name: 'bedroom types',
-              categoryId: bedRoomRes.data.category._id
-            });
-            if (
-              bedRoomCategoryType.status === 200 ||
-              bedRoomCategoryType.status === 201
-            ) {
-              for (let k = 0; k < this.state.ListOfBedrooms.length; k++) {
-                let items = this.state.ListOfBedrooms[k];
-                if (items.isSelected) {
-                  let item = await axios.post(`items/addItem`, {
-                    name: items.item.replace(/_/g, ' '),
-                    cost: this.state.details[items.item].reduce(
-                      (total, num) => {
-                        return total + num.price;
-                      },
-                      0
-                    ),
-                    categoryName: 'Bed Room',
-                    typeId: bedRoomCategoryType.data.type._id,
-                    sizing: [...this.state.details[items.item]],
-                    description: 'testing'
-                  });
-                  if (item.status === 200 || item.status === 201) {
-                    order.items.push({
-                      id: item.data.item._id,
-                      quantity: this.state.details[items.item].length
-                    });
-                  }
-                }
-              }
+          // let bedRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Bed Room'
+          // });
+          // if (bedRoomRes.status === 200 || bedRoomRes.status === 201) {
+          // let bedRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'bedroom types',
+          //   categoryId: bedRoomRes.data.category._id
+          // });
+          // if (
+          //   bedRoomCategoryType.status === 200 ||
+          //   bedRoomCategoryType.status === 201
+          // ) {
+          for (let k = 0; k < this.state.ListOfBedrooms.length; k++) {
+            let items = this.state.ListOfBedrooms[k];
+            if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce(
+              //     (total, num) => {
+              //       return total + num.price;
+              //     },
+              //     0
+              //   ),
+              //   categoryName: 'Bed Room',
+              //   typeId: bedRoomCategoryType.data.type._id,
+              //   sizing: [...this.state.details[items.item]],
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
+              order.items.push({
+                cost: this.state.details[items.item].reduce((total, num) => {
+                  return total + num.price;
+                }, 0),
+                id: items.id,
+                quantity: this.state.details[items.item].length
+              });
+              // }
+              // }
+              // }
             }
           }
         } catch (err) {
@@ -1249,44 +1257,44 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.misc !== '') {
         try {
-          let miscRes = await axios.post('category/addCategory', {
-            name: 'Miscellaneous'
-          });
-          if (miscRes.status === 200 || miscRes.status === 201) {
-            let miscellaneousCategoryType = await axios.post(`types/addType`, {
-              name: 'miscellaneous types',
-              categoryId: miscRes.data.category._id
-            });
-            if (
-              miscellaneousCategoryType.status === 200 ||
-              miscellaneousCategoryType.status === 201
-            ) {
-              for (let l = 0; l < this.state.ListOfMiscellaneous.length; l++) {
-                let items = this.state.ListOfMiscellaneous[l];
-                if (items.isSelected) {
-                  let item = await axios.post(`items/addItem`, {
-                    name: items.item.replace(/_/g, ' '),
-                    cost: this.state.details[items.item].reduce(
-                      (total, num) => {
-                        return total + num.price;
-                      },
-                      0
-                    ),
-                    categoryName: 'Miscellaneous',
-                    sizing: [...this.state.details[items.item]],
-                    typeId: miscellaneousCategoryType.data.type._id,
-                    description: 'testing'
-                  });
-                  if (item.status === 200 || item.status === 201) {
-                    order.items.push({
-                      id: item.data.item._id,
-                      quantity: this.state.details[items.item].length
-                    });
-                  }
-                }
-              }
+          // let miscRes = await axios.post('category/addCategory', {
+          //   name: 'Miscellaneous'
+          // });
+          // if (miscRes.status === 200 || miscRes.status === 201) {
+          // let miscellaneousCategoryType = await axios.post(`types/addType`, {
+          //   name: 'miscellaneous types',
+          //   categoryId: miscRes.data.category._id
+          // });
+          // if (
+          //   miscellaneousCategoryType.status === 200 ||
+          //   miscellaneousCategoryType.status === 201
+          // ) {
+          for (let l = 0; l < this.state.ListOfMiscellaneous.length; l++) {
+            let items = this.state.ListOfMiscellaneous[l];
+            if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Miscellaneous',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: miscellaneousCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
+              order.items.push({
+                id: items.id,
+                cost: this.state.details[items.item].reduce((total, num) => {
+                  return total + num.price;
+                }, 0),
+                quantity: this.state.details[items.item].length
+              });
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -1299,44 +1307,44 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.kitchen !== '') {
         try {
-          let kitchenRes = await axios.post('category/addCategory', {
-            name: 'Kitchen'
-          });
-          if (kitchenRes.status === 200 || kitchenRes.status === 201) {
-            let kitchenCategoryType = await axios.post(`types/addType`, {
-              name: 'kitchen types',
-              categoryId: kitchenRes.data.category._id
-            });
-            if (
-              kitchenCategoryType.status === 200 ||
-              kitchenCategoryType.status === 201
-            ) {
-              for (let m = 0; m < this.state.ListOfKitchen.length; m++) {
-                let items = this.state.ListOfKitchen[m];
-                if (items.isSelected) {
-                  let item = await axios.post(`items/addItem`, {
-                    name: items.item.replace(/_/g, ' '),
-                    cost: this.state.details[items.item].reduce(
-                      (total, num) => {
-                        return total + num.price;
-                      },
-                      0
-                    ),
-                    categoryName: 'Kitchen',
-                    sizing: [...this.state.details[items.item]],
-                    typeId: kitchenCategoryType.data.type._id,
-                    description: 'testing'
-                  });
-                  if (item.status === 200 || item.status === 201) {
-                    order.items.push({
-                      id: item.data.item._id,
-                      quantity: this.state.details[items.item].length
-                    });
-                  }
-                }
-              }
+          // let kitchenRes = await axios.post('category/addCategory', {
+          //   name: 'Kitchen'
+          // });
+          // if (kitchenRes.status === 200 || kitchenRes.status === 201) {
+          // let kitchenCategoryType = await axios.post(`types/addType`, {
+          //   name: 'kitchen types',
+          //   categoryId: kitchenRes.data.category._id
+          // });
+          // if (
+          //   kitchenCategoryType.status === 200 ||
+          //   kitchenCategoryType.status === 201
+          // ) {
+          for (let m = 0; m < this.state.ListOfKitchen.length; m++) {
+            let items = this.state.ListOfKitchen[m];
+            if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Kitchen',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: kitchenCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
+              order.items.push({
+                cost: this.state.details[items.item].reduce((total, num) => {
+                  return total + num.price;
+                }, 0),
+                id: items._id,
+                quantity: this.state.details[items.item].length
+              });
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -1437,7 +1445,7 @@ class StepperDataContextProvider extends Component {
     });
     console.log(this.state.cities, this.state.from);
     console.log(
-      this.state.cities.filter((city) => city.name === this.state.from)
+      this.state.cities.filter((city) => city.name.includes(this.state.from))
     );
     let paidAmmount = ((25 / 100) * this.state.totalPrice).toFixed(2);
     let finalStepForm = this.state.finalStepForm;
@@ -1460,8 +1468,8 @@ class StepperDataContextProvider extends Component {
       orderId: this.state.orderId,
       npm: this.state.npm,
       customerId: this.state.customerId,
-      areaId: this.state.cities.filter(
-        (city) => city.name === this.state.from
+      areaId: this.state.cities.filter((city) =>
+        city.name.includes(this.state.from)
       )[0]._id
     };
     try {
@@ -1471,9 +1479,9 @@ class StepperDataContextProvider extends Component {
       );
       let jobsData = {
         status: 'unassigned',
-        areaId: this.state.cities.filter(
-          (city) => city.name === this.state.from
-        )[0]._id,
+        areaId:this.state.cities.filter((city) =>
+        city.name.includes(this.state.from)
+      )[0]._id,
         orderId: this.state.orderId,
         customerId: this.state.customerId,
         jobType: 'Residential',
@@ -2106,6 +2114,123 @@ class StepperDataContextProvider extends Component {
     //     }
     await this.getAllsettings();
     await this.getCititesData();
+    await this.getCategories();
+    await this.getAllItems();
+  };
+  getCategories = async () => {
+    let itemsData = {};
+    try {
+      let category = await axios.get('/category/getAll');
+      if (category.status === 200 || category.status === 201) {
+        let categories = category.data.categories;
+        let itemsResponse = await axios.get('/getItems/getAll');
+        if (itemsResponse.status === 200 || itemsResponse.status === 201) {
+          let items = itemsResponse.data.items;
+          if (categories.length > 0) {
+            for (let i = 0; i < categories.length; i++) {
+              let category = categories[i];
+              let itemsArray = [];
+              for (let j = 0; j < items.length; j++) {
+                console.log(category._id === items[j].categoryId._id)
+                if (
+                  items[j] && items[j].categoryId && items[j].categoryId._id === category._id
+                ) {
+                  itemsArray.push(items[j]);
+                }
+              }
+              if (category.name === 'Living Room') {
+                itemsData.ListOfLivingRoom = itemsArray.map((itm) => ({
+                  isSelected: false,
+                  item: itm.name,
+                  sm: itm.specificationMessage
+                }));
+                // itemsData.ListOfLivingRoom = []
+                // for(let i = 0; i < itemsArray.length; i++){
+                //   itemsData.ListOfLivingRoom.push({
+                //     isSelected: false,
+                //     item: itemsArray[i].name,
+                //     sm: itemsArray[i].specificationMessage
+                //   })
+                // }
+              }
+              console.log(itemsData.ListOfLivingRoom)
+              if (category.name === 'Dining Room') {
+                itemsData.ListOfDiningRoom = itemsArray.map((itm) => ({
+                  id: itm._id,
+                  isSelected: false,
+                  item: itm.name,
+                  sm: itm.specificationMessage
+                }));
+              }
+              if (category.name === 'Bed Room') {
+                itemsData.ListOfBedrooms = itemsArray.map((itm) => ({
+                  id: itm._id,
+                  isSelected: false,
+                  item: itm.name,
+                  sm: itm.specificationMessage
+                }));
+              }
+              if (category.name === 'Kitchen') {
+                itemsData.ListOfKitchen = itemsArray.map((itm) => ({
+                  id: itm._id,
+                  isSelected: false,
+                  item: itm.name,
+                  sm: itm.specificationMessage
+                }));
+              }
+              if (category.name === 'Miscellaneous') {
+                itemsData.ListOfMiscellaneous = itemsArray.map((itm) => ({
+                  id: itm._id,
+                  isSelected: false,
+                  item: itm.name,
+                  sm: itm.specificationMessage
+                }));
+              }
+            }
+
+            let Sizes = {},
+              Prices = {},
+              details = {};
+
+            for (let i = 0; i < items.length; i++) {
+              let item = items[i];
+              details[item.name] = [];
+              Sizes[item.name] =
+                item.sizing && item.sizing.length > 0
+                  ? item.sizing.map((itm) => itm.sizing)
+                  : undefined;
+              Prices[item.name] =
+                item.sizing && item.sizing.length > 0
+                  ? item.sizing.map((itm) => ({
+                      size: itm.sizing,
+                      price: itm.price
+                    }))
+                  : parseInt(item.cost);
+            }
+            console.log(itemsData, Sizes, Prices, details);
+            this.setState({
+              categories: category.data.categories,
+              Prices,
+              Sizes,
+              details,
+              ...itemsData
+            });
+          }
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  getAllItems = async () => {
+    try {
+      let { data } = await axios.get('/getItems/getAll');
+      this.setState({
+        allItems: data.items
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   getAllsettings = async () => {
     try {

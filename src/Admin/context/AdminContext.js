@@ -27,7 +27,7 @@ class AdminContextProvider extends Component {
       movers: [],
       commercial: [],
       reservations: [],
-      categoreis: []
+      categories: []
     };
   }
 
@@ -181,6 +181,9 @@ class AdminContextProvider extends Component {
       }
     } catch (err) {
       console.log(err);
+      this.setState({
+        loading: false
+      });
     }
   };
   handleLogin = (userData) => {
@@ -344,15 +347,37 @@ class AdminContextProvider extends Component {
     });
   };
   handleNewItems = async (itemData) => {
+    // alert(JSON.stringify(itemData));
+    if (
+      itemData.ItemName === '' ||
+      itemData.ItemPrice === '' ||
+      itemData.Category === '' ||
+      itemData.Category === '0'
+    ) {
+      return;
+    }
     try {
-      const { data } = await axios.post('/items/addItem', {
+      const addResponse = await axios.post('/items/addItem', {
         name: itemData.ItemName,
-        cost: itemData.ItemPrice,
-        categoryName: itemData.Category
+        price: itemData.price,
+        specificationMessage: itemData.specificationMessage,
+        categoryId: itemData.Category,
+        categoryName: this.state.categories.filter(
+          (cat) => cat._id === itemData.Category
+        )[0].name,
+        sizing: itemData.sizeAndPriceList
       });
-      console.log(data);
+      if (addResponse.status === 200 || addResponse.status === 201) {
+        this.getAllItems();
+        return true;
+      }
     } catch (err) {
       console.log(err);
+      if (err.response && err.response.data && err.response.data.error) {
+        this.setState({ itemAddErrorMsg: err.response.data.error });
+      } else {
+        this.setState({ itemAddErrorMsg: err.message });
+      }
     }
   };
   handleTownData = async (townData) => {
@@ -371,23 +396,53 @@ class AdminContextProvider extends Component {
       console.log(err);
     }
   };
-  handleItemDelete2 = (id) => {
-    const { data } = axios.delete('delete/deleteItem/' + id);
-    console.log(data);
+  handleItemDelete2 = async (id) => {
+    try {
+      const deleteResponse = await axios.delete('delete/deleteItem/' + id);
+      if (deleteResponse.status === 200) {
+        this.getAllItems();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   handleItemDelete = (id) => {
     const { data } = axios.delete('/area/deleteArea/' + id);
   };
-  handleUpdataItems = (UpdateData) => {
+  handleUpdataItems = async (UpdateData) => {
     console.log(UpdateData);
-    let id = UpdateData.id;
-    const { data } = axios.put('update/updateItem/' + id, {
-      name: UpdateData.ItemName,
-      cost: UpdateData.ItemPrice,
-
-      categoryName: UpdateData.Category
-    });
-    console.log(data);
+    if (
+      UpdateData.ItemName === '' ||
+      UpdateData.ItemPrice === '' ||
+      UpdateData.Category === '' ||
+      UpdateData.Category === '0'
+    ) {
+      return;
+    }
+    try {
+      let id = UpdateData.id;
+      const updateResponse = await axios.put('update/updateItem/' + id, {
+        name: UpdateData.ItemName,
+        price: UpdateData.price,
+        specificationMessage: UpdateData.specificationMessage,
+        categoryId: UpdateData.Category,
+        categoryName: this.state.categories.filter(
+          (cat) => cat._id === UpdateData.Category
+        )[0].name,
+        sizing: UpdateData.sizeAndPriceList
+      });
+      if (updateResponse.status === 200 || updateResponse.status === 201) {
+        this.getAllItems();
+        return true;
+      }
+    } catch (err) {
+      console.log(err);
+      if (err.response && err.response.data && err.response.data.error) {
+        this.setState({ itemAddErrorMsg: err.response.data.error });
+      } else {
+        this.setState({ itemAddErrorMsg: err.message });
+      }
+    }
   };
   handleUpdateTowns = async (UpdateData) => {
     console.log('Town Context', UpdateData);

@@ -139,21 +139,20 @@ class Orders extends React.Component {
           height: '100vh',
           margin: 0
         }}>
-        {this.context.loader ||
-          (this.context.reservations.length === 0 && (
-            <div className={classes.MainLoader}>
-              <div className="lds-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+        {this.context.loader && this.context.reservations.length === 0 && (
+          <div className={classes.MainLoader}>
+            <div className="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
-          ))}
+          </div>
+        )}
         <Grid item xs={12} md={12}>
           <Card>
             {this.context.loading &&
