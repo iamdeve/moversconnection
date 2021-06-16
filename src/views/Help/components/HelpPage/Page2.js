@@ -7,7 +7,7 @@ import { Typography, Button } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import { TopBarMenu } from '../../../../components';
 
-import { StepperDataContext } from './../../../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../../../contexts/StepperDataContext';
 
 const useStyles = makeStyles(() => ({
   root: {

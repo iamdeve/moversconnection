@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { StepperDataContext } from './../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../contexts/StepperDataContext';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';

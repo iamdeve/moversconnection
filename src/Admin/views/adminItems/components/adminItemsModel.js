@@ -130,7 +130,7 @@ export default function AdminItemsModel(props) {
     if (props.editData) {
       setOpen(true);
       setSM(props.editData.specificationMessage);
-      setCategory(props.editData.categoryId);
+      setCategory(props.editData.categoryId._id);
       setItemName(props.editData.name);
       if (props.editData.sizing && props.editData.sizing.length > 0) {
         setSizeAndPrice('size');

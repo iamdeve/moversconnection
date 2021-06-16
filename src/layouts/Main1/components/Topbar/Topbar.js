@@ -14,7 +14,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import { NavLink as RouterLink } from 'react-router-dom';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
-import { StepperDataContext } from './../../../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../../../contexts/StepperDataContext';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1

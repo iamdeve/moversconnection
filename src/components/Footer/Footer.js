@@ -10,7 +10,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import 'react-chat-widget/lib/styles.css';
 import '../../App.css';
 
-import { StepperDataContext } from './../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../contexts/StepperDataContext';
 
 const useStyles = makeStyles(theme => ({
   root: {

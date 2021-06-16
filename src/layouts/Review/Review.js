@@ -7,7 +7,7 @@ import checklist from '../../assets/checklist.png';
 // import { Sidebar, Topbar, Footer } from './components';
 import { TopBarMenu, Footer } from '../../components';
 import '../../App.css';
-import { StepperDataContext } from './../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../contexts/StepperDataContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {

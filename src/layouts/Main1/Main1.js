@@ -8,7 +8,7 @@ import BG from '../../assets/bg.png';
 
 import { TopBarMenu, Footer } from '../../components';
 import '../../App.css';
-import { StepperDataContext } from './../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../contexts/StepperDataContext';
 
 const useStyles = makeStyles(() => ({
   root: {

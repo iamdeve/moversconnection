@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 // import { Topbar, Footer } from './components';
 import { TopBarMenu, Footer } from '../../components';
 import backgroundMinimal from '../../assets/backgroundminimal.png';
-import { StepperDataContext } from './../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../contexts/StepperDataContext';
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -8,7 +8,7 @@ import { TopBarMenu } from '../../../../components';
 
 import { Link } from 'react-router-dom';
 import Footer from '../../../../layouts/Help/components/Footer/Footer';
-import { StepperDataContext } from './../../../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../../../contexts/StepperDataContext';
 
 const useStyles = makeStyles(() => ({
   root: {

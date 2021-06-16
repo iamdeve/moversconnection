@@ -9,7 +9,7 @@ import Stamp from '../../../../assets/stamp.png';
 import { TopBarMenu } from '../../../../components';
 import Footer from '../../../../layouts/Help/components/Footer/Footer';
 
-import { StepperDataContext } from './../../../../contexts/StepperDataContext';
+import { StepperDataContext } from '../../../../contexts/StepperDataContext';
 import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(() => ({

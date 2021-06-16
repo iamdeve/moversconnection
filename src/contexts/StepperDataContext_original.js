@@ -83,7 +83,176 @@ class StepperDataContextProvider extends Component {
     openModelMiscellaneous: false,
     categories: [],
     allItems: [],
-
+    ListOfLivingRoom: [
+      {
+        isSelected: false,
+        item: 'Tv_Stand',
+        sm: 'Please include all TV stands in your move'
+      },
+      {
+        isSelected: false,
+        item: 'Arm_Decorative_Chair',
+        sm: 'Please include patio and all Armchair or decorative chairs in your move'
+      },
+      {
+        isSelected: false,
+        item: 'Futon',
+        sm: 'Please include any futon in your move'
+      },
+      {
+        isSelected: false,
+        item: 'TV',
+        sm: 'Please include all TV in your move'
+      },
+      { isSelected: false, item: 'Sofa', sm: '' },
+      { isSelected: false, item: 'Love_Seat', sm: '' },
+      { isSelected: false, item: 'Sofa_L_Shape', sm: '' },
+      { isSelected: false, item: 'Ottoman', sm: '' },
+      { isSelected: false, item: 'Reclinable_Chairs', sm: '' },
+      { isSelected: false, item: 'Corner_Tables', sm: '' },
+      { isSelected: false, item: 'Coffee_Tables', sm: '' },
+      {
+        isSelected: false,
+        item: 'Decorative_Tables',
+        sm: 'Please include all Decorative Tables in your move'
+      }
+    ],
+    ListOfDiningRoom: [
+      {
+        isSelected: false,
+        item: 'Dining_Room_Tables',
+        sm: 'Please select the table surface, (wood, glass, metal, or marble )'
+      },
+      { isSelected: false, item: 'Dining_Room_Chairs', sm: '' },
+      {
+        isSelected: false,
+        item: 'China_Cabinets',
+        sm: 'Size - Small, Medium, or Large'
+      }
+    ],
+    ListOfBedrooms: [
+      { isSelected: false, item: 'Beds', sm: '' },
+      {
+        isSelected: false,
+        item: 'Nightstand_Tables',
+        sm: 'Please indicate # of drawers 0,1,2, 3 or 4'
+      },
+      {
+        isSelected: false,
+        item: 'Chest',
+        sm: 'Please indicate # of drawers from 0 to 12'
+      },
+      {
+        isSelected: false,
+        item: 'Dresser',
+        sm: 'Please indicate # of drawers Dresser with mirror or without'
+      }
+    ],
+    ListOfKitchen: [
+      {
+        isSelected: false,
+        item: 'Refrigerators',
+        sm: 'Side by Side or Regular'
+      },
+      {
+        isSelected: false,
+        item: 'Stoves',
+        sm: 'Please indicate Stove with oven or cooktop stove'
+      },
+      { isSelected: false, item: 'Dryers', sm: '' },
+      { isSelected: false, item: 'Washers', sm: '' },
+      { isSelected: false, item: 'Dryer_And_Washer_combos', sm: '' },
+      { isSelected: false, item: 'Microwave_Ovens', sm: '' },
+      { isSelected: false, item: 'Dishwashers', sm: '' },
+      { isSelected: false, item: 'Wine_Coolers', sm: '' },
+      { isSelected: false, item: 'Toaster_Ovens', sm: '' },
+      { isSelected: false, item: 'Indoor_Grills', sm: '' },
+      { isSelected: false, item: 'Coffee_Machines', sm: '' },
+      { isSelected: false, item: 'Mini_Fridges', sm: '' },
+      {
+        isSelected: false,
+        item: 'Chest_Freezers',
+        sm: 'Size - Small, Medium, or Large'
+      }
+    ],
+    ListOfMiscellaneous: [
+      {
+        isSelected: false,
+        item: 'Frames',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Area_Rugs',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Lamps',
+        sm: 'Please include all lamps, indicate if it’s a stand or table lamp'
+      },
+      { isSelected: false, item: 'Ceiling_Fans', sm: '' },
+      {
+        isSelected: false,
+        item: 'Desks',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      { isSelected: false, item: 'Window_Air_Conditioner_Units', sm: '' },
+      { isSelected: false, item: 'Wall_Pack_Air_Conditioner_Units', sm: '' },
+      { isSelected: false, item: 'Inverter_Units', sm: '' },
+      { isSelected: false, item: 'Inverter_Unit_Compressors', sm: '' },
+      { isSelected: false, item: 'Boxes', sm: '' },
+      { isSelected: false, item: 'Pool_Tables', sm: '' },
+      { isSelected: false, item: 'Outdoor_BBQ_Grills', sm: '' },
+      {
+        isSelected: false,
+        item: 'Fish_Tanks',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Dog_Houses',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      { isSelected: false, item: 'Office_Chairs', sm: '' },
+      {
+        isSelected: false,
+        item: 'Flower_Pots',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      { isSelected: false, item: 'Gym_Equipment', sm: '' },
+      {
+        isSelected: false,
+        item: 'Benches',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'BookCases',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Sculptures',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Mirrors',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Desktop_Computers',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      {
+        isSelected: false,
+        item: 'Gas_Tanks',
+        sm: 'Size - Small, Medium, or Large'
+      },
+      { isSelected: false, item: 'TV_Wall_Mounts', sm: '' }
+    ],
     Quantity: [
       { id: 1 },
       { id: 2 },
@@ -96,6 +265,278 @@ class StepperDataContextProvider extends Component {
       { id: 9 },
       { id: 10 }
     ],
+
+    Sizes: {
+      Tv_Stand: ['Small', 'Medium', 'Large'],
+      Arm_Decorative_Chair: ['Small', 'Medium', 'Large'],
+      TV: ['13-23', '24-37', '38-51', '52-65', '66-79', '80-93', '94-100'],
+      Beds: ['Twin', 'Full', 'Queen', 'King'],
+      Nightstand_Tables: [0, 1, 2, 3, 4],
+      Chest: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      Dresser: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      Dining_Room_Tables: ['Wood', 'Glass', 'Metal', 'Marbel'],
+      China_Cabinets: ['Small', 'Medium', 'Large'],
+      Refrigerators: ['Side by Side', 'Regular'],
+      Stoves: ['Stove with Oven', 'Cooktop Stove'],
+      Chest_Freezers: ['Small', 'Medium', 'Large'],
+      Frames: ['Small', 'Medium', 'Large'],
+      Area_Rugs: ['Small', 'Medium', 'Large'],
+      Lamps: ['Stand Lamp', 'Table Lamp'],
+      Desks: ['Small', 'Medium', 'Large'],
+      Fish_Tanks: ['Small', 'Medium', 'Large'],
+      Dog_Houses: ['Small', 'Medium', 'Large'],
+      Flower_Pots: ['Small', 'Medium', 'Large'],
+      Benches: ['Small', 'Medium', 'Large'],
+      BookCases: ['Small', 'Medium', 'Large'],
+      Sculptures: ['Small', 'Medium', 'Large'],
+      Mirrors: ['Small', 'Medium', 'Large'],
+      Desktop_Computers: ['Small', 'Medium', 'Large'],
+      Gas_Tanks: ['Small', 'Medium', 'Large'],
+      Gym_Equipment: ['Small', 'Medium', 'Large']
+    },
+
+    Prices: {
+      Tv_Stand: [
+        { size: 'Small', price: 6 },
+        { size: 'Medium', price: 10 },
+        { size: 'Large', price: 15 }
+      ],
+      Arm_Decorative_Chair: 5,
+      Futon: 11,
+      TV: [
+        { size: '13-23', price: 4 },
+        { size: '24-37', price: 7 },
+        { size: '38-51', price: 10 },
+        { size: '52-65', price: 15 },
+        { size: '66-79', price: 20 },
+        { size: '80-93', price: 26 },
+        { size: '94-100', price: 30 }
+      ],
+      Sofa: 12,
+      Sofa_L_Shape: 10,
+      Love_Seat: 10,
+      Ottoman: 6,
+      Reclinable_Chairs: 7,
+      Corner_Tables: 2,
+      Coffee_Tables: 5,
+      Decorative_Tables: 5,
+
+      Beds: [
+        { size: 'Twin', price: 10 },
+        { size: 'Full', price: 15 },
+        { size: 'Queen', price: 20 },
+        { size: 'King', price: 25 }
+      ],
+      Nightstand_Tables: [
+        { size: 0, price: 3 },
+        { size: 1, price: 4 },
+        { size: 2, price: 6 },
+        { size: 3, price: 8 },
+        { size: 4, price: 10 }
+      ],
+      Chest: [
+        { size: 0, price: 8 },
+        { size: 1, price: 8 },
+        { size: 2, price: 8 },
+        { size: 3, price: 8 },
+        { size: 4, price: 8 },
+        { size: 5, price: 12 },
+        { size: 6, price: 12 },
+        { size: 7, price: 12 },
+        { size: 8, price: 12 },
+        { size: 9, price: 18 },
+        { size: 10, price: 18 },
+        { size: 11, price: 18 },
+        { size: 12, price: 18 }
+      ],
+      Dresser: [
+        { size: 0, price: 10 },
+        { size: 1, price: 10 },
+        { size: 2, price: 10 },
+        { size: 3, price: 10 },
+        { size: 4, price: 10 },
+        { size: 5, price: 15 },
+        { size: 6, price: 15 },
+        { size: 7, price: 15 },
+        { size: 8, price: 15 },
+        { size: 9, price: 20 },
+        { size: 10, price: 20 },
+        { size: 11, price: 20 },
+        { size: 12, price: 20 }
+      ],
+
+      Dining_Room_Tables: [
+        { size: 'Wood', price: 12 },
+        { size: 'Glass', price: 15 },
+        { size: 'Metal', price: 18 },
+        { size: 'Marbel', price: 20 }
+      ],
+      Dining_Room_Chairs: 3,
+      China_Cabinets: [
+        { size: 'Small', price: 12 },
+        { size: 'Medium', price: 15 },
+        { size: 'Large', price: 25 }
+      ],
+
+      Refrigerators: [
+        { size: 'Side by Side', price: 40 },
+        { size: 'Regular', price: 35 }
+      ],
+      Stoves: [
+        { size: 'Stove with Oven', price: 30 },
+        { size: 'Cooktop Stove', price: 15 }
+      ],
+      Dryers: 30,
+      Washers: 30,
+      Dryer_And_Washer_combos: 55,
+      Microwave_Ovens: 10,
+      Dishwashers: 20,
+      Wine_Coolers: 15,
+      Toaster_Ovens: 10,
+      Indoor_Grills: 5,
+      Coffee_Machines: 4,
+      Mini_Fridges: 10,
+      Chest_Freezers: [
+        { size: 'Small', price: 20 },
+        { size: 'Medium', price: 25 },
+        { size: 'Large', price: 30 }
+      ],
+
+      Frames: [
+        { size: 'Small', price: 1 },
+        { size: 'Medium', price: 3 },
+        { size: 'Large', price: 5 }
+      ],
+      Area_Rugs: [
+        { size: 'Small', price: 1 },
+        { size: 'Medium', price: 4 },
+        { size: 'Large', price: 10 }
+      ],
+      Lamps: [
+        { size: 'Stand Lamp', price: 3 },
+        { size: 'Table Lamp', price: 2 }
+      ],
+      Ceiling_Fans: 4,
+      Desks: [
+        { size: 'Small', price: 9 },
+        { size: 'Medium', price: 12 },
+        { size: 'Large', price: 16 }
+      ],
+      Window_Air_Conditioner_Units: 12,
+      Wall_Pack_Air_Conditioner_Units: 20,
+      Inverter_Units: 15,
+      Inverter_Unit_Compressors: 10,
+      Boxes: 1,
+      Pool_Tables: 100,
+      Outdoor_BBQ_Grills: 15,
+      Fish_Tanks: [
+        { size: 'Small', price: 6 },
+        { size: 'Medium', price: 9 },
+        { size: 'Large', price: 20 }
+      ],
+      Dog_Houses: [
+        { size: 'Small', price: 5 },
+        { size: 'Medium', price: 8 },
+        { size: 'Large', price: 11 }
+      ],
+      Office_Chairs: 3,
+      Flower_Pots: [
+        { size: 'Small', price: 3 },
+        { size: 'Medium', price: 5 },
+        { size: 'Large', price: 9 }
+      ],
+      Gym_Equipment: [
+        { size: 'Small', price: 15 },
+        { size: 'Medium', price: 20 },
+        { size: 'Large', price: 30 }
+      ],
+      Benches: 10,
+      BookCases: [
+        { size: 'Small', price: 5 },
+        { size: 'Medium', price: 8 },
+        { size: 'Large', price: 11 }
+      ],
+      Sculptures: [
+        { size: 'Small', price: 3 },
+        { size: 'Medium', price: 7 },
+        { size: 'Large', price: 12 }
+      ],
+      Desktop_Computers: 8,
+      Mirrors: [
+        { size: 'Small', price: 2 },
+        { size: 'Medium', price: 6 },
+        { size: 'Large', price: 9 }
+      ],
+      Gas_Tanks: [
+        { size: 'Small', price: 3 },
+        { size: 'Medium', price: 6 },
+        { size: 'Large', price: 10 }
+      ],
+      TV_Wall_Mounts: 4
+    },
+
+    details: {
+      Tv_Stand: [],
+      Arm_Decorative_Chair: [],
+      TV: [],
+      Sofa: [],
+      Love_Seat: [],
+      Sofa_L_Shape: [],
+      Ottoman: [],
+      Reclinable_Chairs: [],
+      Corner_Tables: [],
+      Coffee_Tables: [],
+      Decorative_Tables: [],
+      Futon: [],
+
+      Dining_Room_Tables: [],
+      Dining_Room_Chairs: [],
+      China_Cabinets: [],
+
+      Beds: [],
+      Nightstand_Tables: [],
+      Chest: [],
+      Dresser: [],
+
+      Frames: [],
+      Area_Rugs: [],
+      Lamps: [],
+      Ceiling_Fans: [],
+      Desks: [],
+      Window_Air_Conditioner_Units: [],
+      Wall_Pack_Air_Conditioner_Units: [],
+      Inverter_Units: [],
+      Inverter_Unit_Compressors: [],
+      Boxes: [],
+      Pool_Tables: [],
+      Outdoor_BBQ_Grills: [],
+      Fish_Tanks: [],
+      Dog_Houses: [],
+      Office_Chairs: [],
+      Flower_Pots: [],
+      Gym_Equipment: [],
+      Benches: [],
+      BookCases: [],
+      Sculptures: [],
+      Desktop_Computers: [],
+      Mirrors: [],
+      Gas_Tanks: [],
+      TV_Wall_Mounts: [],
+
+      Refrigerators: [],
+      Stoves: [],
+      Dryers: [],
+      Washers: [],
+      Dryer_And_Washer_combos: [],
+      Microwave_Ovens: [],
+      Dishwashers: [],
+      Wine_Coolers: [],
+      Toaster_Ovens: [],
+      Indoor_Grills: [],
+      Coffee_Machines: [],
+      Mini_Fridges: [],
+      Chest_Freezers: []
+    }
   };
 
   disableLoader = () => {
@@ -367,15 +808,11 @@ class StepperDataContextProvider extends Component {
     }
     console.log(title, sizing, price);
     if (this.search(this.state.ListOfLivingRoom).find) {
-      // console.log(this.state.ListOfLivingRoom[this.search(this.state.ListOfLivingRoom).index])
-      let i = this.state.ListOfLivingRoom[this.search(this.state.ListOfLivingRoom).index]
       this.setState((prevState) => {
         let updatedDetails = [...prevState.ListOfLivingRoom];
         updatedDetails[this.search(this.state.ListOfLivingRoom).index] = {
-          ...i,
           isSelected: true,
           item: title
-          
         };
         return {
           ...prevState,
@@ -385,9 +822,7 @@ class StepperDataContextProvider extends Component {
     } else if (this.search(this.state.ListOfDiningRoom).find) {
       this.setState((prevState) => {
         let updatedDetails = [...prevState.ListOfDiningRoom];
-        let i = this.state.ListOfDiningRoom[this.search(this.state.ListOfDiningRoom).index]
         updatedDetails[this.search(this.state.ListOfDiningRoom).index] = {
-          ...i,
           isSelected: true,
           item: title
         };
@@ -399,10 +834,7 @@ class StepperDataContextProvider extends Component {
     } else if (this.search(this.state.ListOfBedrooms).find) {
       this.setState((prevState) => {
         let updatedDetails = [...prevState.ListOfBedrooms];
-        let i = this.state.ListOfBedrooms[this.search(this.state.ListOfBedrooms).index]
-      
         updatedDetails[this.search(this.state.ListOfBedrooms).index] = {
-          ...i,
           isSelected: true,
           item: title
         };
@@ -414,10 +846,7 @@ class StepperDataContextProvider extends Component {
     } else if (this.search(this.state.ListOfKitchen).find) {
       this.setState((prevState) => {
         let updatedDetails = [...prevState.ListOfKitchen];
-        let i = this.state.ListOfKitchen[this.search(this.state.ListOfKitchen).index]
-      
         updatedDetails[this.search(this.state.ListOfKitchen).index] = {
-          ...i,
           isSelected: true,
           item: title
         };
@@ -429,9 +858,7 @@ class StepperDataContextProvider extends Component {
     } else if (this.search(this.state.ListOfMiscellaneous).find) {
       this.setState((prevState) => {
         let updatedDetails = [...prevState.ListOfMiscellaneous];
-        let i = this.state.ListOfMiscellaneous[this.search(this.state.ListOfMiscellaneous).index]
         updatedDetails[this.search(this.state.ListOfMiscellaneous).index] = {
-          ...i,
           isSelected: true,
           item: title
         };
@@ -674,22 +1101,44 @@ class StepperDataContextProvider extends Component {
     try {
       if (this.state.livingRoom !== '') {
         try {
-        
+          // let livingRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Living Room'
+          // });
+          // if (livingRoomRes.status === 200 || livingRoomRes.status === 201) {
+          // let livingRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'livingroom types',
+          //   categoryId: livingRoomRes.data.category._id
+          // });
+          // if (
+          //   livingRoomCategoryType.status === 200 ||
+          //   livingRoomCategoryType.status === 201
+          // ) {
           for (let i = 0; i < this.state.ListOfLivingRoom.length; i++) {
             let items = this.state.ListOfLivingRoom[i];
             if (items.isSelected) {
-              console.log(this.state.details[items.item], items)
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Living Room',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: livingRoomCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
               order.items.push({
                 id: items.id,
                 cost: this.state.details[items.item].reduce((total, num) => {
-                  return total + parseInt(num.price);
+                  return total + num.price;
                 }, 0),
-                sizing:[...this.state.details[items.item]],
                 quantity: this.state.details[items.item].length
               });
-              
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -702,9 +1151,35 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.diningRoom !== '') {
         try {
+          // let diningRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Dining Room'
+          // });
+          // if (diningRoomRes.status === 200 || diningRoomRes.status === 201) {
+          // let diningRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'diningroom types',
+          //   categoryId: diningRoomRes.data.category._id
+          // });
+          // if (
+          //   diningRoomCategoryType.status === 200 ||
+          //   diningRoomCategoryType.status === 201
+          // ) {
           for (let j = 0; j < this.state.ListOfDiningRoom.length; j++) {
             let items = this.state.ListOfDiningRoom[j];
             if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce(
+              //     (total, num) => {
+              //       return total + num.price;
+              //     },
+              //     0
+              //   ),
+              //   categoryName: 'Dining Room',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: diningRoomCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
               order.items.push({
                 cost: this.state.details[items.item].reduce((total, num) => {
                   return total + num.price;
@@ -712,7 +1187,10 @@ class StepperDataContextProvider extends Component {
                 id: items.id,
                 quantity: this.state.details[items.item].length
               });
+              // }
+              // }
             }
+            // }
           }
         } catch (err) {
           console.log(err);
@@ -726,9 +1204,35 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.bedRoom !== '') {
         try {
+          // let bedRoomRes = await axios.post('category/addCategory', {
+          //   name: 'Bed Room'
+          // });
+          // if (bedRoomRes.status === 200 || bedRoomRes.status === 201) {
+          // let bedRoomCategoryType = await axios.post(`types/addType`, {
+          //   name: 'bedroom types',
+          //   categoryId: bedRoomRes.data.category._id
+          // });
+          // if (
+          //   bedRoomCategoryType.status === 200 ||
+          //   bedRoomCategoryType.status === 201
+          // ) {
           for (let k = 0; k < this.state.ListOfBedrooms.length; k++) {
             let items = this.state.ListOfBedrooms[k];
             if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce(
+              //     (total, num) => {
+              //       return total + num.price;
+              //     },
+              //     0
+              //   ),
+              //   categoryName: 'Bed Room',
+              //   typeId: bedRoomCategoryType.data.type._id,
+              //   sizing: [...this.state.details[items.item]],
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
               order.items.push({
                 cost: this.state.details[items.item].reduce((total, num) => {
                   return total + num.price;
@@ -736,6 +1240,9 @@ class StepperDataContextProvider extends Component {
                 id: items.id,
                 quantity: this.state.details[items.item].length
               });
+              // }
+              // }
+              // }
             }
           }
         } catch (err) {
@@ -750,9 +1257,32 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.misc !== '') {
         try {
+          // let miscRes = await axios.post('category/addCategory', {
+          //   name: 'Miscellaneous'
+          // });
+          // if (miscRes.status === 200 || miscRes.status === 201) {
+          // let miscellaneousCategoryType = await axios.post(`types/addType`, {
+          //   name: 'miscellaneous types',
+          //   categoryId: miscRes.data.category._id
+          // });
+          // if (
+          //   miscellaneousCategoryType.status === 200 ||
+          //   miscellaneousCategoryType.status === 201
+          // ) {
           for (let l = 0; l < this.state.ListOfMiscellaneous.length; l++) {
             let items = this.state.ListOfMiscellaneous[l];
             if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Miscellaneous',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: miscellaneousCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
               order.items.push({
                 id: items.id,
                 cost: this.state.details[items.item].reduce((total, num) => {
@@ -760,8 +1290,11 @@ class StepperDataContextProvider extends Component {
                 }, 0),
                 quantity: this.state.details[items.item].length
               });
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -774,9 +1307,32 @@ class StepperDataContextProvider extends Component {
 
       if (this.state.kitchen !== '') {
         try {
+          // let kitchenRes = await axios.post('category/addCategory', {
+          //   name: 'Kitchen'
+          // });
+          // if (kitchenRes.status === 200 || kitchenRes.status === 201) {
+          // let kitchenCategoryType = await axios.post(`types/addType`, {
+          //   name: 'kitchen types',
+          //   categoryId: kitchenRes.data.category._id
+          // });
+          // if (
+          //   kitchenCategoryType.status === 200 ||
+          //   kitchenCategoryType.status === 201
+          // ) {
           for (let m = 0; m < this.state.ListOfKitchen.length; m++) {
             let items = this.state.ListOfKitchen[m];
             if (items.isSelected) {
+              // let item = await axios.post(`items/addItem`, {
+              //   name: items.item.replace(/_/g, ' '),
+              //   cost: this.state.details[items.item].reduce((total, num) => {
+              //     return total + num.price;
+              //   }, 0),
+              //   categoryName: 'Kitchen',
+              //   sizing: [...this.state.details[items.item]],
+              //   typeId: kitchenCategoryType.data.type._id,
+              //   description: 'testing'
+              // });
+              // if (item.status === 200 || item.status === 201) {
               order.items.push({
                 cost: this.state.details[items.item].reduce((total, num) => {
                   return total + num.price;
@@ -784,8 +1340,11 @@ class StepperDataContextProvider extends Component {
                 id: items._id,
                 quantity: this.state.details[items.item].length
               });
+              // }
             }
           }
+          // }
+          // }
         } catch (err) {
           console.log(err);
           this.setState({
@@ -796,7 +1355,7 @@ class StepperDataContextProvider extends Component {
         }
       }
 
-      console.log('orders data',order);
+      console.log(order);
 
       if (order.items.length > 0) {
         try {
@@ -837,6 +1396,29 @@ class StepperDataContextProvider extends Component {
               showErroModal: true
             });
           }
+          // this.setState({
+          //   totalPrice: submitOrder.data.totalPrice,
+          //   orderId: submitOrder.data.order.id,
+          //   loader: false,
+          //   showErroModal: false
+          // });
+
+          // if (url === '') {
+          //   this.props.history.push({ pathname: '/review' });
+          // } else {
+          //   this.props.history.push({ pathname: url });
+          // }
+
+          // this.setState({
+          //   errorMsg: err.message,
+          //   loader: false,
+          //   showErroModal: true
+          // });
+          // let deleteCustomer = await axios.post(
+          //   `/customers/delete/${this.state.npm}`
+          // );
+          // if (deleteCustomer.status === 200) {
+          // }
         }
       }
     } catch (err) {
@@ -964,11 +1546,244 @@ class StepperDataContextProvider extends Component {
             specificationMessagae: '',
 
             title: 'TV',
+            ListOfLivingRoom: [
+              {
+                isSelected: false,
+                item: 'Tv_Stand',
+                sm: 'Please include all TV stands in your move'
+              },
+              {
+                isSelected: false,
+                item: 'Arm_Decorative_Chair',
+                sm: 'Please include patio and all Armchair or decorative chairs in your move'
+              },
+              {
+                isSelected: false,
+                item: 'Futon',
+                sm: 'Please include any futon in your move'
+              },
+              {
+                isSelected: false,
+                item: 'TV',
+                sm: 'Please include all TV in your move'
+              },
+              { isSelected: false, item: 'Sofa', sm: '' },
+              { isSelected: false, item: 'Love_Seat', sm: '' },
+              { isSelected: false, item: 'Sofa_L_Shape', sm: '' },
+              { isSelected: false, item: 'Ottoman', sm: '' },
+              { isSelected: false, item: 'Reclinable_Chairs', sm: '' },
+              { isSelected: false, item: 'Corner_Tables', sm: '' },
+              { isSelected: false, item: 'Coffee_Tables', sm: '' },
+              {
+                isSelected: false,
+                item: 'Decorative_Tables',
+                sm: 'Please include all Decorative Tables in your move'
+              }
+            ],
+            ListOfDiningRoom: [
+              {
+                isSelected: false,
+                item: 'Dining_Room_Tables',
+                sm: 'Please select the table surface, (wood, glass, metal, or marble )'
+              },
+              { isSelected: false, item: 'Dining_Room_Chairs', sm: '' },
+              {
+                isSelected: false,
+                item: 'China_Cabinets',
+                sm: 'Size - Small, Medium, or Large'
+              }
+            ],
+            ListOfBedrooms: [
+              { isSelected: false, item: 'Beds', sm: '' },
+              {
+                isSelected: false,
+                item: 'Nightstand_Tables',
+                sm: 'Please indicate # of drawers 0,1,2, 3 or 4'
+              },
+              {
+                isSelected: false,
+                item: 'Chest',
+                sm: 'Please indicate # of drawers from 0 to 12'
+              },
+              {
+                isSelected: false,
+                item: 'Dresser',
+                sm: 'Please indicate # of drawers Dresser with mirror or without'
+              }
+            ],
+            ListOfKitchen: [
+              {
+                isSelected: false,
+                item: 'Refrigerators',
+                sm: 'Side by Side or Regular'
+              },
+              {
+                isSelected: false,
+                item: 'Stoves',
+                sm: 'Please indicate Stove with oven or cooktop stove'
+              },
+              { isSelected: false, item: 'Dryers', sm: '' },
+              { isSelected: false, item: 'Washers', sm: '' },
+              { isSelected: false, item: 'Dryer_And_Washer_combos', sm: '' },
+              { isSelected: false, item: 'Microwave_Ovens', sm: '' },
+              { isSelected: false, item: 'Dishwashers', sm: '' },
+              { isSelected: false, item: 'Wine_Coolers', sm: '' },
+              { isSelected: false, item: 'Toaster_Ovens', sm: '' },
+              { isSelected: false, item: 'Indoor_Grills', sm: '' },
+              { isSelected: false, item: 'Coffee_Machines', sm: '' },
+              { isSelected: false, item: 'Mini_Fridges', sm: '' },
+              {
+                isSelected: false,
+                item: 'Chest_Freezers',
+                sm: 'Size - Small, Medium, or Large'
+              }
+            ],
+            ListOfMiscellaneous: [
+              {
+                isSelected: false,
+                item: 'Frames',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Area_Rugs',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Lamps',
+                sm: 'Please include all lamps, indicate if it’s a stand or table lamp'
+              },
+              { isSelected: false, item: 'Ceiling_Fans', sm: '' },
+              {
+                isSelected: false,
+                item: 'Desks',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Window_Air_Conditioner_Units',
+                sm: ''
+              },
+              {
+                isSelected: false,
+                item: 'Wall_Pack_Air_Conditioner_Units',
+                sm: ''
+              },
+              { isSelected: false, item: 'Inverter_Units', sm: '' },
+              { isSelected: false, item: 'Inverter_Unit_Compressors', sm: '' },
+              { isSelected: false, item: 'Boxes', sm: '' },
+              { isSelected: false, item: 'Pool_Tables', sm: '' },
+
+              { isSelected: false, item: 'Outdoor_BBQ_Grills', sm: '' },
+              {
+                isSelected: false,
+                item: 'Fish_Tanks',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Dog_Houses',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              { isSelected: false, item: 'Office_Chairs', sm: '' },
+              {
+                isSelected: false,
+                item: 'Flower_Pots',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              { isSelected: false, item: 'Gym_Equipment', sm: '' },
+              {
+                isSelected: false,
+                item: 'Benches',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'BookCases',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Sculptures',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Desktop_Computers',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              {
+                isSelected: false,
+                item: 'Gas_Tanks',
+                sm: 'Size - Small, Medium, or Large'
+              },
+              { isSelected: false, item: 'TV_Wall_Mounts', sm: '' }
+            ],
+            details: {
+              Tv_Stand: [],
+              Arm_Decorative_Chair: [],
+              TV: [],
+              Sofa: [],
+              Love_Seat: [],
+              Sofa_L_Shape: [],
+              Ottoman: [],
+              Reclinable_Chairs: [],
+              Corner_Tables: [],
+              Coffee_Tables: [],
+              Decorative_Tables: [],
+              Futon: [],
+
+              Dining_Room_Tables: [],
+              Dining_Room_Chairs: [],
+              China_Cabinets: [],
+
+              Beds: [],
+              Nightstand_Tables: [],
+              Chest: [],
+              Dresser: [],
+
+              Frames: [],
+              Area_Rugs: [],
+              Lamps: [],
+              Ceiling_Fans: [],
+              Desks: [],
+              Window_Air_Conditioner_Units: [],
+              Wall_Pack_Air_Conditioner_Units: [],
+              Inverter_Units: [],
+              Inverter_Unit_Compressors: [],
+              Boxes: [],
+              Pool_Tables: [],
+
+              Outdoor_BBQ_Grills: [],
+              Fish_Tanks: [],
+              Dog_Houses: [],
+              Office_Chairs: [],
+              Flower_Pots: [],
+              Gym_Equipment: [],
+              Benches: [],
+              Book_Cases: [],
+              Sculptures: [],
+              Desktop_Computers: [],
+              Gas_Tanks: [],
+              TV_Wall_Mounts: [],
+
+              Refrigerators: [],
+              Stoves: [],
+              Dryers: [],
+              Washers: [],
+              Dryer_And_Washer_combos: [],
+              Microwave_Ovens: [],
+              Dishwashers: [],
+              Wine_Coolers: [],
+              Toaster_Ovens: [],
+              Indoor_Grills: [],
+              Coffee_Machines: [],
+              Mini_Fridges: [],
+              Chest_Freezers: []
+            }
           });
         }
-        await this.getCititesData();
-        await this.getCategories();
-        await this.getAllItems();
         this.props.history.push({ pathname: '/dashboard' });
       }
     } catch (err) {
@@ -1327,8 +2142,7 @@ class StepperDataContextProvider extends Component {
                 itemsData.ListOfLivingRoom = itemsArray.map((itm) => ({
                   isSelected: false,
                   item: itm.name,
-                  sm: itm.specificationMessage,
-                  id: itm._id,
+                  sm: itm.specificationMessage
                 }));
                 // itemsData.ListOfLivingRoom = []
                 // for(let i = 0; i < itemsArray.length; i++){
