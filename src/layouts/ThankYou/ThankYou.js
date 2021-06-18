@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     '@media(max-width: 787px)': {
       overflow: 'scroll',
       backgroundSize: '200% 100%',
-      backgroundImage: 'none',
+      backgroundImage: 'none !important',
       background: '#F2E161'
     }
   }

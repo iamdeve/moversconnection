@@ -292,7 +292,7 @@ const useStyles = makeStyles(() => ({
     padding: '1rem'
   },
   MainContent: {
-    margin: '1rem 0 0 1rem',
+    margin: '1rem 1rem 0 1rem',
     '& h3': {
       padding: '0 2rem',
       letterSpacing: '0.8rem',

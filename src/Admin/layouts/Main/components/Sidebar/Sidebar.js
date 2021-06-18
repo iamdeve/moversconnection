@@ -63,11 +63,11 @@ const Sidebar = (props) => {
       icon: <DashboardIcon />
     },
     //ab
-    {
-      title: 'Category',
-      href: '/admin/category',
-      icon: <DashboardIcon />
-    },
+    // {
+    //   title: 'Category',
+    //   href: '/admin/category',
+    //   icon: <DashboardIcon />
+    // },
     {
       title: 'Items',
       href: '/admin/Items',

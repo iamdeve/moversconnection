@@ -214,7 +214,7 @@ class Orders extends React.Component {
                   {
                     title: 'From Location',
                     field: 'reservationId.reservation.from',
-                    render: (rowData, index, i) => <span>{rowData.from} </span>,
+                    render: (rowData, index, i) => <span>{rowData.reservationId ? rowData.reservationId.reservation.from : rowData.orderId.origin.from} </span>,
                     cellStyle: {
                       fontFamily: 'calibri'
                     }
@@ -222,6 +222,8 @@ class Orders extends React.Component {
                   {
                     title: 'To Location',
                     field: 'reservationId.reservation.to',
+                    render: (rowData, index, i) => <span>{rowData.reservationId ? rowData.reservationId.reservation.to : rowData.orderId.destination.to} </span>,
+                 
                     cellStyle: {
                       fontFamily: 'calibri'
                     }

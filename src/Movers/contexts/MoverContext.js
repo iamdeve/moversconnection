@@ -18,7 +18,7 @@ class MoverContextProvider extends Component {
         password: '',
         phone: '',
         city: '',
-        street: '',
+        address: '',
         companyType: ''
       },
       profile: {
@@ -29,7 +29,7 @@ class MoverContextProvider extends Component {
         confirmPassword: '',
         phone: '',
         city: '',
-        street: '',
+        address: '',
         profile: '',
         zone: [],
         companyType: ''
@@ -217,6 +217,25 @@ class MoverContextProvider extends Component {
     }
   };
 
+  cityChangeHandler = (city) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      signupForm: {
+        ...prevState.signupForm,
+        city: city
+      }
+    }));
+  }
+
+  cityProfileChangeHandler = (city) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      profile: {
+        ...prevState.profile,
+        city: city
+      }
+    }));
+  }
   signupHandleChange = (e) => {
     const { name, value, checked, type } = e.target;
     this.setState((prevState) => ({
@@ -247,8 +266,10 @@ class MoverContextProvider extends Component {
       password: this.state.signupForm.password,
       phone: this.state.signupForm.phone,
       city: this.state.signupForm.city,
-      companyType: this.state.signupForm.companyType
+      companyType: this.state.signupForm.companyType,
+      address: this.state.signupForm.address
     };
+
 
     try {
       let signup = await axios.post('mover/signup', data);
@@ -267,13 +288,13 @@ class MoverContextProvider extends Component {
               password: '',
               phone: '',
               city: '',
-              street: ''
+              address: ''
             }
           };
         });
-        autocomplete.current
-          .getElementsByClassName('MuiAutocomplete-clearIndicator')[0]
-          .click();
+        // autocomplete.current
+        //   .getElementsByClassName('MuiAutocomplete-clearIndicator')[0]
+        //   .click();
       }
     } catch (err) {
       console.log(err);
@@ -323,7 +344,7 @@ class MoverContextProvider extends Component {
                 email: mover.data.mover.email,
                 phone: mover.data.mover.phone,
                 city: mover.data.mover.city,
-                street: mover.data.mover.street,
+                address: mover.data.mover.address,
                 companyType: mover.data.mover.companyType,
                 zone: [...mover.data.mover.zones]
               },
@@ -452,7 +473,7 @@ class MoverContextProvider extends Component {
     formData.append('companyName', this.state.profile.companyName);
     formData.append('phone', this.state.profile.phone);
     formData.append('city', this.state.profile.city);
-    formData.append('street', this.state.profile.street);
+    formData.append('address', this.state.profile.address);
     formData.append('companyType', this.state.profile.companyType);
     formData.append('zones', this.state.profile.zone.map((z) => z._id).join());
 
@@ -546,7 +567,9 @@ class MoverContextProvider extends Component {
           typeChangeHandler: this.typeChangeHandler,
           typeChangeHandlerProfile: this.typeChangeHandlerProfile,
           confirmJob: this.confirmJob,
-          markAsComplete: this.markAsComplete
+          markAsComplete: this.markAsComplete,
+          cityChangeHandler:this.cityChangeHandler,
+cityProfileChangeHandler:this.cityProfileChangeHandler,
         }}>
         {this.props.children}
       </MoverContext.Provider>

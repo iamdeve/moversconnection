@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import validate from 'validate.js';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/styles';
 import { MoverContext } from '../../contexts/MoverContext';
+
+import PlacesAutocomplete from 'react-places-autocomplete';
+import {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng
+} from 'react-places-autocomplete';
+
 import {
   Grid,
   Button,
@@ -55,11 +68,14 @@ const useStyles = makeStyles((theme) => ({
     '&:.MuiAppBar-positionFixed': {
       display: 'none'
     },
+    overflow:'scroll',
     backgroundColor: theme.palette.background.default,
     height: '100vh',
     position: 'relative',
     top: '0vh',
-    zIndex: '999999'
+    zIndex: '999999',
+    
+    
   },
   grid: {
     height: '100%'
@@ -75,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: `url(${ZoneBg})`,
+    // backgroundImage: `url(${ZoneBg})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
   },
@@ -166,8 +182,31 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = (props) => {
   const { history } = props;
+  const context = useContext(MoverContext)
   const autocomplete = React.useRef(null);
   const classes = useStyles();
+
+  const [city, setCity] = React.useState('');
+  const [latLng, setLatLng] = React.useState(null);
+  const [mapReady, setMapReady] = React.useState(false)
+
+  const handleChangeLocation = (address) => {
+    console.log(address);
+    setCity(address);
+  };
+
+  const handleSelectLocation = (city) => {
+    console.log(city);
+    setCity(city);
+    context.cityChangeHandler(city)
+    geocodeByAddress(city)
+      .then((results) => getLatLng(results[0]))
+      .then(
+        (latLng) =>
+          setLatLng(latLng) /*console.log('Success', latLng, address)*/
+      )
+      .catch((error) => console.error('Error', error));
+  };
 
   // const [formState, setFormState] = useState({
   //   isValid: false,
@@ -204,6 +243,42 @@ const SignUp = (props) => {
   //   }));
   // };
 
+  const loadGoogleMaps = callback => {
+    const existingScript = document.getElementById("googlePlacesScript");
+    if (!existingScript) {
+        const script = document.createElement("script");
+        script.src =
+            "https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyBbmYIh2aROJI2GNe61mbnK4WASMy7KS4s";
+        script.id = "googlePlacesScript";
+        document.body.appendChild(script);
+        //action to do after a script is loaded in our case setState
+        script.onload = () => {
+            if (callback) callback();
+        };
+    }
+    if (existingScript && callback) callback();
+};
+
+const unloadGoogleMaps = () => {
+    let googlePlacesScript = document.getElementById("googlePlacesScript");
+    if (googlePlacesScript) {
+        googlePlacesScript.remove();
+    }
+};
+  React.useEffect(() => {
+    loadGoogleMaps(() => {
+      // Work to do after the library loads.
+      setMapReady(true);
+    });
+  }, [])
+
+  React.useEffect(() => {
+    return () => {
+        // Anything in here is fired on component unmount.
+        unloadGoogleMaps()
+    }
+}, [])
+
   const handleBack = () => {
     history.goBack();
   };
@@ -218,9 +293,9 @@ const SignUp = (props) => {
   // };
 
   return (
-    <MoverContext.Consumer>
-      {(context) => {
-        return (
+    // <MoverContext.Consumer>
+    //   {(context) => {
+        // return (
           <div className={classes.root}>
             <Grid className={classes.grid} container>
               <Grid className={classes.quoteContainer} item lg={5}>
@@ -315,22 +390,89 @@ const SignUp = (props) => {
                           />
                         </Grid>
                         <Grid className={classes.content} item lg={12} xs={12}>
-                          <TextField
-                            className={classes.textField}
-                            fullWidth
-                            label="City"
-                            name="city"
-                            onChange={context.signupHandleChange}
-                            type="text"
-                            value={context.signupForm.city}
-                            variant="outlined"
-                          />
+                          {mapReady && (
+
+                        <PlacesAutocomplete
+                        className={classes.textField}
+                        
+                value={city}
+                onChange={handleChangeLocation}
+                onSelect={handleSelectLocation}>
+                {({
+                  getInputProps,
+                  suggestions,
+                  getSuggestionItemProps,
+                  loading
+                }) => (
+                  <div  className={classes.textField}>
+                    <TextField
+                      {...getInputProps({
+                        placeholder: 'Search Places ...',
+                        className: 'location-search-input'
+                      })}
+                      style={{width:'100%'}}
+                      label="City"
+                      style={{
+                        //   width: "100%",
+                        width: '100%',
+                      }}
+                      variant="outlined"
+                    />
+                    {/* <input
+											{...getInputProps({
+												placeholder: 'Search Places ...',
+												className: 'location-search-input',
+											})}
+										/> */}
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? {
+                              backgroundColor: '#fafafa',
+                              cursor: 'pointer'
+                            }
+                          : {
+                              backgroundColor: '#ffffff',
+                              cursor: 'pointer'
+                            };
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style
+                            })}>
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+                          )}
+
                         </Grid>
                       </Grid>
                       <Grid className={classes.content} item lg={12} xs={12}>
+                          <TextField
+                            className={classes.textField}
+                            fullWidth
+                            label="Address"
+                            name="address"
+                            onChange={context.signupHandleChange}
+                            type="text"
+                            value={context.signupForm.address}
+                            variant="outlined"
+                          />
                         {/* {console.log(context.cities)} */}
+                     
                         {/* {context.cities.map((city) => city.name).join(' ')} */}
-                        <Autocomplete
+                        {/* <Autocomplete
                           ref={autocomplete}
                           multiple={true}
                           className={classes.Autocomplete}
@@ -367,22 +509,35 @@ const SignUp = (props) => {
                               variant="outlined"
                             />
                           )}
-                        />
+                        /> */}
                       </Grid>
                       <Grid container>
                         <Grid className={classes.content} item lg={12} xs={12}>
-                          <Autocomplete
+                        <FormControl variant="outlined" className={classes.textField}>
+                          <InputLabel htmlFor="grouped-native-select">Company Type</InputLabel>
+                          <Select  onChange={(e) => {
+                              console.log(e);
+                              context.typeChangeHandler(e.target.value);
+                            }} native defaultValue="" label="Company Type" id="grouped-native-select">
+                            {['Residential', 'Commercial', 'Both'].map((item) => (
+
+                            <option value={item}>{item}</option>
+                            ))}
+                            
+                          </Select>
+                        </FormControl>
+                          {/* <Autocomplete
                             className={classes.Autocomplete}
                             inputStyle={{ color: 'white' }}
                             align="left"
                             InputProps={{
                               className: classes.inputColor
                             }}
-                            id="combo-box-demofff"
+                            id="combo-box"
                             options={['Residential', 'Commercial', 'Both']}
                             getOptionLabel={(option) => (option ? option : '')}
                             defaultValue={context.signupForm.companyType}
-                            openOnFocus={true}
+                            autoComplete={false}
                             onChange={(e, value) => {
                               console.log(e, value);
                               context.typeChangeHandler(value);
@@ -391,7 +546,9 @@ const SignUp = (props) => {
                               <TextField
                                 // value={context.zone}
                                 required
+                                autocomplete="off"
                                 inputProps={{
+                                  autoComplete:"no",
                                   classes: {
                                     input: classes.resize,
                                     root: classes.label,
@@ -404,7 +561,7 @@ const SignUp = (props) => {
                                 variant="outlined"
                               />
                             )}
-                          />
+                          /> */}
                         </Grid>
                       </Grid>
                       <Grid className={classes.content} item lg={12} xs={12}>
@@ -481,9 +638,9 @@ const SignUp = (props) => {
               </Grid>
             </Grid>
           </div>
-        );
-      }}
-    </MoverContext.Consumer>
+        // );
+    //   }}
+    // </MoverContext.Consumer>
   );
 };
 

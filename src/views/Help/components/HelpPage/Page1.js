@@ -211,7 +211,7 @@ const useStyles = makeStyles(() => ({
   booknowWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '1rem 0',
+    padding: '3.5rem 0',
     '@media (max-width:1000px)': {
       padding: '0rem'
     }

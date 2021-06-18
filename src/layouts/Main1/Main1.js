@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     '@media(max-width: 787px)': {
       height: '100vh',
       overflow: 'scroll',
-      backgroundImage: 'none',
+      backgroundImage: 'none !important',
       background: '#F2E161'
     }
   },

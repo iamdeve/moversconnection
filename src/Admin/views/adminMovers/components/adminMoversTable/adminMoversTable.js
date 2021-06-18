@@ -137,29 +137,29 @@ const MoversTable = (props) => {
                     fontFamily: 'calibri'
                   }
                 },
-                {
-                  title: 'Approved',
-                  field: 'isApproved',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
-                {
-                  title: 'Verified',
-                  field: 'isVerified',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
+                // {
+                //   title: 'Approved',
+                //   field: 'isApproved',
+                //   cellStyle: {
+                //     fontFamily: 'calibri'
+                //   }
+                // },
+                // {
+                //   title: 'Verified',
+                //   field: 'isVerified',
+                //   cellStyle: {
+                //     fontFamily: 'calibri'
+                //   }
+                // },
+                // {
+                //   title: 'Status',
+                //   field: 'status',
+                //   cellStyle: {
+                //     fontFamily: 'calibri'
+                //   }
+                // },
                 {
                   title: 'Status',
-                  field: 'status',
-                  cellStyle: {
-                    fontFamily: 'calibri'
-                  }
-                },
-                {
-                  title: 'Action',
                   render: (rowData) => (
                     <>
                       {rowData.isApproved ? (
@@ -187,11 +187,16 @@ const MoversTable = (props) => {
                           </span>
                         </>
                       ) : (
+                        rowData.isVerified ? (
                         <Button
                           variant="contained"
                           onClick={() => context.approveMover(rowData._id)}>
                           Approve
                         </Button>
+                        ) : (
+                            <span style={{color: 'gray', fontSize:'12px', backgroundColor:'#eee', display:'inline-block', padding:'.3rem', borderRadius:'10px'}}>Verification Pending</span>
+                        )
+                        
                       )}
                     </>
                   ),

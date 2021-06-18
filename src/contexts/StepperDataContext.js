@@ -1057,9 +1057,9 @@ class StepperDataContextProvider extends Component {
           console.log(this.state.from, this.state.cities);
           let jobsData = {
             status: 'unassigned',
-            areaId: this.state.cities.filter(
-              (city) => city.name === this.state.from
-            )[0]._id,
+            areaId: this.state.cities.filter((city) =>
+            city.name.includes(this.state.from)
+          )[0]._id,
             jobType: 'Commercial',
             orderId: submitOrder.data.order._id,
             commercialCustomerId: contactRes.data.commercialCustomer._id
